@@ -1,6 +1,6 @@
 ---
 name: style
-description: Tommy's agreed Python style — naming, formatting, comments and lint policy. Read before writing or reviewing Python that touches it; nothing applies until it is recorded here.
+description: Python style — modern syntax and idioms, naming, imports, type-annotation style, formatting, lint policy and the common Python footguns, as the generic baseline plus Tommy's recorded decisions. Read before writing or reviewing Python; only what is recorded here applies.
 kind: convention
 domain: python
 profile: core

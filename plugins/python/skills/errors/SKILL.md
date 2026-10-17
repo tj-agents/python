@@ -1,6 +1,6 @@
 ---
 name: errors
-description: Tommy's agreed Python error handling — error types, propagation and failure policy. Read before writing or reviewing Python that touches it; nothing applies until it is recorded here.
+description: Python error handling — narrow catches, chained re-raises, a package's own exception hierarchy, built-in exceptions for their standard meaning, assert only for invariants, cleanup through `with`, and what an entry point does with failures, as the generic baseline plus Tommy's recorded decisions. Read before writing or reviewing Python that raises or catches; only what is recorded here applies.
 kind: convention
 domain: python
 profile: core

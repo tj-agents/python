@@ -8,14 +8,18 @@ Published as plugin `python` from this repository's `python-agents` marketplace.
 
 - Knowledge: `python:direction`, `python:knowledge`.
 - Policies: `python:learning`.
-- Conventions, empty until a decision is recorded: `python:build`, `python:domain-design`, `python:errors`, `python:libraries`, `python:structure`, `python:style`, `python:testing`.
+- Conventions, the generic baseline plus Tommy's recorded decisions: `python:build`, `python:domain-design`, `python:errors`, `python:libraries`, `python:structure`, `python:style`, `python:testing`.
 - Utilities: `python:scaffold`.
+
+The tier applies only where a root `pyproject.toml`, `setup.py`, `setup.cfg` or `requirements.txt` exists
+(`tiers/python.json` `applies: stack-present`).
 
 ## Authoring and verification
 
 ```powershell
 pwsh .agents/sync-generated.ps1
 pwsh .agents/sync-generated.ps1 -Check
+python -B -m unittest discover -s .agents/tests -p "test_*.py"
 ```
 
 The layout, the vendored generator and CI come from [Template](https://github.com/tj-agents/template).
