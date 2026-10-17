@@ -12,4 +12,5 @@ Change them in Template, then run `template:update` to refresh the exact vendore
 before delivery.
 
 `knowledge` is Tommy's progress record: change it only under `learning`'s Progress rules. A `convention`
-skill gains a rule only through `learning`'s convention procedure, after Tommy decides it.
+skill holds the generic baseline and Tommy's house rules; a rule changes only through `learning`'s convention
+procedure, and nothing framework- or application-specific enters core (`direction`).

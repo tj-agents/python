@@ -1,6 +1,6 @@
 ---
 name: structure
-description: Tommy's agreed Python project structure — repository and module layout, visibility and wiring. Read before writing or reviewing Python that touches it; nothing applies until it is recorded here.
+description: Python project structure — the src package layout, modules and their names, public and internal names, import-time behaviour and entry points, as the generic baseline plus Tommy's recorded decisions; it prescribes no application architecture. Read before writing or reviewing Python that adds a package, module or entry point; only what is recorded here applies.
 kind: convention
 domain: python
 profile: core

@@ -1,6 +1,6 @@
 ---
 name: build
-description: Tommy's agreed Python build — toolchain pin, build configuration, the verification gate and CI. Read before writing or reviewing Python that touches it; nothing applies until it is recorded here.
+description: Python build and tooling — uv as the one project tool, `pyproject.toml` as the only metadata and configuration file, the uv_build backend, the Python version policy, the committed lockfile, dependency groups and bounds, the ruff, mypy and pytest gate and CI, as the generic baseline plus Tommy's recorded decisions. Read before writing or reviewing Python project setup, dependencies or CI; only what is recorded here applies.
 kind: convention
 domain: python
 profile: core
