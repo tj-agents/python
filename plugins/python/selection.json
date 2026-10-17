@@ -1,0 +1,184 @@
+{
+  "plugin": "python",
+  "dependencies": [
+    "tj-agents/base",
+    "tj-agents/engineering",
+    "tj-agents/machine"
+  ],
+  "profiles": {
+    "core": [
+      "build",
+      "domain-design",
+      "errors",
+      "libraries",
+      "structure",
+      "style",
+      "testing"
+    ],
+    "knowledge": [
+      "direction",
+      "knowledge",
+      "learning"
+    ],
+    "scaffold": [
+      "scaffold"
+    ]
+  },
+  "compatibilitySkillAliases": {},
+  "skills": [
+    {
+      "name": "build",
+      "kind": "convention",
+      "profile": "core",
+      "applicability": [
+        "Python projects"
+      ],
+      "requires": [
+        "python"
+      ],
+      "provenance": [
+        "house"
+      ]
+    },
+    {
+      "name": "direction",
+      "kind": "knowledge",
+      "profile": "knowledge",
+      "applicability": [
+        "Python learning"
+      ],
+      "requires": [
+        "python"
+      ],
+      "provenance": [
+        "house"
+      ]
+    },
+    {
+      "name": "domain-design",
+      "kind": "convention",
+      "profile": "core",
+      "applicability": [
+        "Python projects"
+      ],
+      "requires": [
+        "python"
+      ],
+      "provenance": [
+        "house"
+      ]
+    },
+    {
+      "name": "errors",
+      "kind": "convention",
+      "profile": "core",
+      "applicability": [
+        "Python projects"
+      ],
+      "requires": [
+        "python"
+      ],
+      "provenance": [
+        "house"
+      ]
+    },
+    {
+      "name": "knowledge",
+      "kind": "knowledge",
+      "profile": "knowledge",
+      "applicability": [
+        "Python learning"
+      ],
+      "requires": [
+        "python"
+      ],
+      "provenance": [
+        "house"
+      ]
+    },
+    {
+      "name": "learning",
+      "kind": "policy",
+      "profile": "knowledge",
+      "applicability": [
+        "Python projects and learning"
+      ],
+      "requires": [
+        "python"
+      ],
+      "provenance": [
+        "house"
+      ]
+    },
+    {
+      "name": "libraries",
+      "kind": "convention",
+      "profile": "core",
+      "applicability": [
+        "Python projects"
+      ],
+      "requires": [
+        "python"
+      ],
+      "provenance": [
+        "house"
+      ]
+    },
+    {
+      "name": "scaffold",
+      "kind": "utility",
+      "profile": "scaffold",
+      "applicability": [
+        "new Python projects"
+      ],
+      "requires": [
+        "python"
+      ],
+      "provenance": [
+        "house"
+      ]
+    },
+    {
+      "name": "structure",
+      "kind": "convention",
+      "profile": "core",
+      "applicability": [
+        "Python projects"
+      ],
+      "requires": [
+        "python"
+      ],
+      "provenance": [
+        "house"
+      ]
+    },
+    {
+      "name": "style",
+      "kind": "convention",
+      "profile": "core",
+      "applicability": [
+        "Python projects"
+      ],
+      "requires": [
+        "python"
+      ],
+      "provenance": [
+        "house"
+      ]
+    },
+    {
+      "name": "testing",
+      "kind": "convention",
+      "profile": "core",
+      "applicability": [
+        "Python projects"
+      ],
+      "requires": [
+        "python"
+      ],
+      "provenance": [
+        "house"
+      ]
+    }
+  ]
+}

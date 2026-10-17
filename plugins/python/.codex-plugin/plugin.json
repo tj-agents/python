@@ -1,0 +1,25 @@
+{
+  "name": "python",
+  "description": "Python learning companion and standards.",
+  "author": {
+    "name": "Tommy Seery"
+  },
+  "repository": "https://github.com/tj-agents/python",
+  "skills": "./skills/",
+  "keywords": [
+    "python",
+    "uv",
+    "ruff",
+    "mypy",
+    "pytest"
+  ],
+  "interface": {
+    "displayName": "Python",
+    "shortDescription": "Python learning companion and standards.",
+    "longDescription": "Python learning companion and standards. Follow the Template main branch and run template:update to refresh vendored files.",
+    "developerName": "Tommy Seery",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": "Teach me the next Python concept my current task needs."
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "python",
+  "displayName": "Python",
+  "description": "Python learning companion and standards.",
+  "author": {
+    "name": "Tommy Seery"
+  },
+  "repository": "https://github.com/tj-agents/python",
+  "skills": "./skills/",
+  "keywords": [
+    "python",
+    "uv",
+    "ruff",
+    "mypy",
+    "pytest"
+  ],
+  "dependencies": [
+    "base@tj-agents",
+    "engineering@tj-agents",
+    "machine@tj-agents"
+  ]
+}
