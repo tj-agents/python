@@ -1,0 +1,25 @@
+{
+  "name": "python-agents",
+  "description": "Python learning companion and standards.",
+  "owner": {
+    "name": "Tommy Seery"
+  },
+  "plugins": [
+    {
+      "name": "python",
+      "source": "./plugins/python",
+      "description": "Python learning companion and standards.",
+      "category": "Productivity",
+      "keywords": [
+        "python",
+        "uv",
+        "ruff",
+        "mypy",
+        "pytest"
+      ]
+    }
+  ],
+  "allowCrossMarketplaceDependenciesOn": [
+    "tj-agents"
+  ]
+}

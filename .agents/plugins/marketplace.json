@@ -1,0 +1,20 @@
+{
+  "name": "python-agents",
+  "interface": {
+    "displayName": "Python"
+  },
+  "plugins": [
+    {
+      "name": "python",
+      "source": {
+        "source": "local",
+        "path": "./plugins/python"
+      },
+      "policy": {
+        "installation": "INSTALLED_BY_DEFAULT",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
