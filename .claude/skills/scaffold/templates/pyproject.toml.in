@@ -1,0 +1,31 @@
+[project]
+name = "__NAME__"
+version = "0.1.0"
+description = "__DESCRIPTION__"
+requires-python = ">=__PYTHON__"
+dependencies = []
+
+[build-system]
+requires = ["uv_build>=0.13.1,<0.14"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "mypy>=2.4.0",
+    "pytest>=9.1.1",
+    "ruff>=0.17.1",
+]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "N", "UP", "B", "A", "BLE", "C4", "SIM", "PTH", "PIE", "RET", "RUF"]
+
+[tool.mypy]
+strict = true
+warn_unreachable = true
+files = ["src", "tests"]
+
+[tool.pytest]
+strict = true
+testpaths = ["tests"]
+addopts = ["--import-mode=importlib", "-ra"]
+filterwarnings = ["error"]

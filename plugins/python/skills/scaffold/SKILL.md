@@ -1,6 +1,6 @@
 ---
 name: scaffold
-description: Create a new Python project in the File structure `python:structure` records. Use when starting a Python project; it creates nothing until that File structure is agreed.
+description: Create a new Python project with the universal foundation `python:structure` and `python:build` record — a src-layout package with `pyproject.toml`, uv, ruff, mypy, pytest, CI and agent files — and nothing else. It has one shape, no presets and no framework options. Use when starting any Python project; never run it over an existing tree.
 kind: utility
 domain: python
 profile: scaffold
