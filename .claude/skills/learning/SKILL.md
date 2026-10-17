@@ -1,6 +1,6 @@
 ---
 name: learning
-description: How to work with Tommy on Python — learning mode by default (Tommy writes the code; you explain, review and unblock), delivery mode only when asked, teach anything absent from `python:knowledge` before relying on it, and the procedure by which a Python convention is agreed and recorded. Use for any Python task, explanation, review or handoff, and whenever a Python convention is proposed or changed.
+description: How to work with Tommy on Python — learning mode by default (Tommy writes the code; you explain, review and unblock), delivery mode only when asked, teach anything absent from `python:knowledge` before relying on it, and the procedure by which a Python convention is agreed and recorded, including the difference between the generic baseline and Tommy's own decisions. Use for any Python task, explanation, review or handoff, and whenever a Python convention is proposed or changed.
 kind: policy
 domain: python
 profile: knowledge
