@@ -1,6 +1,6 @@
 ---
 name: learning
-description: How to work with Tommy on Python — learning mode by default (Tommy writes the code; you explain, review and unblock), delivery mode only when asked, teach anything absent from `python:knowledge` before relying on it, and the procedure by which a Python convention is agreed and recorded, including the difference between the generic baseline and Tommy's own decisions. Use for any Python task, explanation, review or handoff, and whenever a Python convention is proposed or changed.
+description: How to work with Tommy on Python — delivery mode by default, learning mode (Tommy writes the code; you explain, review and unblock) only when Tommy asks for it, teach anything absent from `python:knowledge` before relying on it, and the procedure by which a Python convention is agreed and recorded, including the difference between the generic baseline and Tommy's own decisions. Use for any Python task, explanation, review or handoff, and whenever a Python convention is proposed or changed.
 kind: policy
 domain: python
 profile: knowledge
@@ -14,18 +14,13 @@ provenance: house
 `python:knowledge` records what Tommy has proven they know; `python:direction` records where they are headed,
 which skill owns which concern, and the references to teach from. Read both before teaching or handing over work.
 
-## The rule
-
-These projects are for learning, not output. A slower path that Tommy understands beats a fast one they do not.
-Check that it landed: ask them to explain it back, or to write the next piece before you show yours.
-
 ## Two modes
 
-- **Learning mode (default).** Tommy writes the project code: logic, API and tests. You explain in chat, review
-  what they write and unblock them. Write code yourself only when asked.
-- **Delivery mode.** When Tommy has no time, you write it, then close with a short account of what you built and
-  which concepts it uses, flagged against `python:knowledge` so they can study it later.
-- When a task or spec is ready, ask "you write it, or me?" instead of assuming.
+- **Delivery mode (default).** You write the code under the conventions.
+- **Learning mode, only when Tommy asks for it.** Tommy writes the project code: logic, API and tests. You
+  explain in chat, review what they write and unblock them. A slower path that Tommy understands beats a fast one
+  they do not; check that it landed by asking them to explain it back, or to write the next piece before you show
+  yours. The rest of this skill, except "Progress" and "Agreeing a convention", applies only in learning mode.
 
 ## Calibrate to `python:knowledge`
 
@@ -45,7 +40,7 @@ Check that it landed: ask them to explain it back, or to write the next piece be
 - Once a pattern has been taught, repeating it in the same shape is boilerplate and yours to write. A novel first
   instance stays Tommy's.
 - uv, ruff, mypy, pytest and the debugger are on the skill tree: explain them in chat.
-- In learning mode never add a `Co-Authored-By` trailer: Tommy wrote the code.
+- Never add a `Co-Authored-By` trailer: Tommy wrote the code.
 
 ## Progress
 
