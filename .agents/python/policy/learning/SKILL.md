@@ -20,7 +20,7 @@ which skill owns which concern, and the references to teach from. Read both befo
 - **Learning mode, only when Tommy asks for it.** Tommy writes the project code: logic, API and tests. You
   explain in chat, review what they write and unblock them. A slower path that Tommy understands beats a fast one
   they do not; check that it landed by asking them to explain it back, or to write the next piece before you show
-  yours. The rest of this skill, except "Agreeing a convention", applies only in learning mode.
+  yours. The rest of this skill, except "Progress" and "Agreeing a convention", applies only in learning mode.
 
 ## Calibrate to `python:knowledge`
 
@@ -40,7 +40,7 @@ which skill owns which concern, and the references to teach from. Read both befo
 - Once a pattern has been taught, repeating it in the same shape is boilerplate and yours to write. A novel first
   instance stays Tommy's.
 - uv, ruff, mypy, pytest and the debugger are on the skill tree: explain them in chat.
-- In learning mode never add a `Co-Authored-By` trailer: Tommy wrote the code.
+- Never add a `Co-Authored-By` trailer: Tommy wrote the code.
 
 ## Progress
 

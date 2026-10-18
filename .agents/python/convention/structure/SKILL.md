@@ -40,8 +40,8 @@ framework layouts and architectural patterns are house decisions or scoped capab
 
 ## House
 
-- A repository whose Python is standalone scripts that a host loads by path (agent plugin skills, hooks and
-  their tooling) is not a package. Its `pyproject.toml` sets `[tool.uv] package = false`, and each script and its
+- A **script repository**, whose Python is standalone scripts that a host loads by path (agent plugin skills,
+  hooks and their tooling), is not a package. Its `pyproject.toml` sets `[tool.uv] package = false`, and each script and its
   tests stay where the repository's layout puts them, with no `src/` or `py.typed`. Every other rule applies.
   Why: the host runs each file in place, so moving it into a package breaks loading. Tommy, 2026-10-18. [house]
 
