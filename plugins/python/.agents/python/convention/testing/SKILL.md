@@ -39,4 +39,5 @@ Owns test layout, naming, fixtures, isolation and the pytest configuration. Each
 
 ## House
 
-_Nothing yet._ Propose a rule through `python:learning`'s convention procedure.
+- In a script repository (`python:structure`), tests stay in the test directories its layout already uses
+  instead of a top-level `tests/`; every other testing rule applies. Tommy, 2026-10-18. [house]
