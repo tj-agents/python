@@ -48,4 +48,6 @@ verification gate and CI. Each rule names its kind (`python:learning`).
 
 ## House
 
-_Nothing yet._ Propose a rule through `python:learning`'s convention procedure.
+- In a script repository (`python:structure`), mypy `files` and pytest `testpaths` name the authored script and
+  test directories, and generated copies are excluded from the gate. The 3.12 floor applies to shipped scripts
+  too: a script's interpreter check and documentation name 3.12. Tommy, 2026-10-18. [house]
