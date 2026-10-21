@@ -3,6 +3,7 @@
 - `build` — convention — core
 - `domain-design` — convention — core
 - `errors` — convention — core
+- `explanation` — convention — core
 - `libraries` — convention — core
 - `structure` — convention — core
 - `style` — convention — core
