@@ -9,7 +9,16 @@ SPEC = importlib.util.spec_from_file_location("sync_generated", ROOT / ".agents"
 sync_generated = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(sync_generated)
 
-CONVENTIONS = {"style", "structure", "domain-design", "errors", "testing", "build", "libraries"}
+CONVENTIONS = {
+    "style",
+    "structure",
+    "domain-design",
+    "errors",
+    "testing",
+    "build",
+    "libraries",
+    "explanation",
+}
 
 
 class PythonCoreProfileTests(unittest.TestCase):
