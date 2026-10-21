@@ -10,6 +10,7 @@
       "build",
       "domain-design",
       "errors",
+      "explanation",
       "libraries",
       "structure",
       "style",
@@ -70,6 +71,20 @@
     },
     {
       "name": "errors",
+      "kind": "convention",
+      "profile": "core",
+      "applicability": [
+        "Python projects"
+      ],
+      "requires": [
+        "python"
+      ],
+      "provenance": [
+        "house"
+      ]
+    },
+    {
+      "name": "explanation",
       "kind": "convention",
       "profile": "core",
       "applicability": [
