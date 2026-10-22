@@ -1,5 +1,5 @@
 {
-  "name": "python-agents",
+  "name": "tj-agents",
   "description": "Python learning companion and standards.",
   "owner": {
     "name": "Tommy Seery"
@@ -18,8 +18,5 @@
         "pytest"
       ]
     }
-  ],
-  "allowCrossMarketplaceDependenciesOn": [
-    "tj-agents"
   ]
 }
