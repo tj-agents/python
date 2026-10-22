@@ -1,6 +1,23 @@
 {
   "schema_version": 1,
-  "plugin": "python-agents/python",
-  "source_roots": [".agents/python"],
-  "requires": {"marketplaces": [{"id": "python-agents", "repository": "tj-agents/python"}], "plugins": ["python-agents/python"], "hooks": [], "permissions": {"claude_allow": [], "codex_prefix_rules": []}}
+  "plugin": "tj-agents/python",
+  "source_roots": [
+    ".agents/python"
+  ],
+  "requires": {
+    "marketplaces": [
+      {
+        "id": "tj-agents",
+        "repository": "tj-agents/marketplace"
+      }
+    ],
+    "plugins": [
+      "tj-agents/python"
+    ],
+    "hooks": [],
+    "permissions": {
+      "claude_allow": [],
+      "codex_prefix_rules": []
+    }
+  }
 }

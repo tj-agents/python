@@ -2,7 +2,7 @@
 
 Python learning companion and standards.
 
-Published as plugin `python` from this repository's `python-agents` marketplace.
+Published as plugin `tj-agents/python` from the `tj-agents` marketplace.
 
 ## Skills
 
