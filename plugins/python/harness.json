@@ -1,22 +1,18 @@
 {
   "schema_version": 1,
-  "plugin": "python-agents/python",
+  "plugin": "tj-agents/python",
   "source_roots": [
     ".agents/python"
   ],
   "requires": {
     "marketplaces": [
       {
-        "id": "python-agents",
-        "repository": "tj-agents/python"
-      },
-      {
         "id": "tj-agents",
         "repository": "tj-agents/marketplace"
       }
     ],
     "plugins": [
-      "python-agents/python",
+      "tj-agents/python",
       "tj-agents/base",
       "tj-agents/engineering",
       "tj-agents/machine"
