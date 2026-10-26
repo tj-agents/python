@@ -34,4 +34,45 @@ Owns how records, values, closed choices, invariants and shared behaviour are mo
 
 ## House
 
-_Nothing yet._ Propose a rule through `python:learning`'s convention procedure.
+- Put behaviour that depends on an owned type's data or invariants on that type. Use a module-level function
+  for a stateless operation on standard-library or third-party objects, or one with no natural type owner.
+  A function taking an object is the usual alternative to a C# extension method; it is called as
+  `operation(value)`. Do not introduce a class containing only static methods to provide a namespace;
+  `python:structure` owns meaningful module names. [house]
+- Use `staticmethod` when an operation belongs to an existing class but needs neither its instance nor the
+  class itself; use `classmethod` when it needs the class, such as a named constructor. Add a wrapper or
+  subclass only for a concrete modelling or behavioural need, not merely to obtain method-call syntax.
+  These choices do not require DDD layers or a domain type around every external object. [house]
+- Construction can establish an immutable value's invariants; it cannot guarantee that external state stays
+  valid. Recheck changeable filesystem, process or network facts when the operation needs them. [house]
+
+Why: keep behaviour with its real owner while using Python's existing functions and modules for independent
+operations. Source: Tommy, 2026-10-26, following the path-comparison repair;
+[Python tutorial: classes and namespaces](https://docs.python.org/3/tutorial/classes.html),
+[static and class methods](https://docs.python.org/3/library/functions.html#staticmethod), and
+[path operations and filesystem queries](https://docs.python.org/3/library/pathlib.html).
+
+```python
+from dataclasses import dataclass
+from pathlib import Path
+
+
+def has_suffix(path: Path, suffix: str) -> bool:
+    return path.suffix.casefold() == suffix.casefold()
+
+
+@dataclass(frozen=True, slots=True)
+class PageCount:
+    pages: int
+
+    def __post_init__(self) -> None:
+        if self.pages < 1:
+            raise ValueError("Page count must be positive")
+
+    def combined(self, other: "PageCount") -> "PageCount":
+        return PageCount(self.pages + other.pages)
+
+
+is_pdf = has_suffix(Path("report.PDF"), ".pdf")
+total = PageCount(3).combined(PageCount(2))
+```
