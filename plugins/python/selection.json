@@ -8,7 +8,9 @@
   "profiles": {
     "core": [
       "build",
+      "dispatch",
       "domain-design",
+      "enums",
       "errors",
       "explanation",
       "libraries",
@@ -56,7 +58,35 @@
       ]
     },
     {
+      "name": "dispatch",
+      "kind": "convention",
+      "profile": "core",
+      "applicability": [
+        "Python projects"
+      ],
+      "requires": [
+        "python"
+      ],
+      "provenance": [
+        "house"
+      ]
+    },
+    {
       "name": "domain-design",
+      "kind": "convention",
+      "profile": "core",
+      "applicability": [
+        "Python projects"
+      ],
+      "requires": [
+        "python"
+      ],
+      "provenance": [
+        "house"
+      ]
+    },
+    {
+      "name": "enums",
       "kind": "convention",
       "profile": "core",
       "applicability": [

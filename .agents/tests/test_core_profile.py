@@ -13,6 +13,8 @@ CONVENTIONS = {
     "style",
     "structure",
     "domain-design",
+    "enums",
+    "dispatch",
     "errors",
     "testing",
     "build",

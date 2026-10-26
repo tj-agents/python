@@ -47,12 +47,20 @@ Update a row's status when Tommy levels up an area.
 | `python:direction` | The goal, the skill tree, this table, the growth rule and the references |
 | `python:style` | Syntax and idioms, naming, imports, annotations, formatting and lint policy |
 | `python:structure` | Package layout, modules, visibility, import-time behaviour and entry points |
-| `python:domain-design` | Records, values, choices, invariants and shared behaviour |
+| `python:domain-design` | Records, values, invariants and shared behaviour |
+| `python:enums` | Closed sets of choices and the data each member carries |
+| `python:dispatch` | Choosing behaviour by a key or type, selected once |
 | `python:errors` | Exception types, raising, catching and cleanup |
 | `python:testing` | pytest layout, naming, fixtures and isolation |
 | `python:build` | Toolchain, Python version, `pyproject.toml`, the gate and CI |
 | `python:libraries` | When to take a dependency and which are chosen |
 | `python:scaffold` | Creating the universal project foundation |
+
+```text
+New rule: a per-host home directory is read from each Host member instead of an if on the host.
+Owner: python:enums (data a member carries). Selecting host behaviour once goes to python:dispatch.
+Never: folding it into python:domain-design because enums are also data.
+```
 
 ## Growing beyond the core
 
