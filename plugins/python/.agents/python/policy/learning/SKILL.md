@@ -60,7 +60,7 @@ The convention skills (`python:style`, `python:structure`, `python:domain-design
 - **Baseline** rules apply to almost every Python codebase. `ecosystem` rules come from a PEP, the official
   documentation or near-universal practice; `bootstrap default` rules are one pick among equivalent options,
   made once so no project re-decides it. Tommy adopted this baseline on 2026-10-17 as the generic core.
-- **House** rules are Tommy's own decisions, made in a real project. None is recorded yet.
+- **House** rules are Tommy's own decisions, made in a real project, recorded in the owning convention.
 
 To add or change a rule:
 
@@ -73,3 +73,9 @@ To add or change a rule:
    to a scoped capability (`python:direction`).
 5. Code relies on a convention only after it is recorded. Until then the project's ruff, mypy and pytest
    configuration is the only rule.
+
+```text
+Tommy approves wrapping an untyped dependency behind a typed application boundary.
+Record the decision and its reason as house guidance in python:libraries, then regenerate, commit and push.
+Do not promote a typing concept in python:knowledge: approving a convention is not proof of fluency.
+```
