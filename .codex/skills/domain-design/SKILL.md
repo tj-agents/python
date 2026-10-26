@@ -1,6 +1,6 @@
 ---
 name: domain-design
-description: Python data and domain modelling — records as dataclasses, immutable values, enums for closed choices, invariants checked at construction, and protocols for shared behaviour, as the generic baseline plus Tommy's recorded decisions. Read before writing or reviewing Python that models data; only what is recorded here applies.
+description: Python data and domain modelling — records as dataclasses, immutable values, invariants checked at construction, and protocols for shared behaviour, as the generic baseline plus Tommy's recorded decisions. Read before writing or reviewing Python that models data; only what is recorded here applies.
 kind: convention
 domain: python
 profile: core
