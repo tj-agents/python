@@ -76,3 +76,41 @@ class PageCount:
 is_pdf = has_suffix(Path("report.PDF"), ".pdf")
 total = PageCount(3).combined(PageCount(2))
 ```
+
+- A closed set of variants keeps each variant's data on its enum member, assigned in the enum's `__init__`.
+  Behaviour that differs per variant lives in one module per variant with identical function names, typed by a
+  `Protocol`. The entry point resolves the variant once and selects its module through a
+  `Mapping[Variant, Protocol]`; code below it receives that module and never compares the variant again. Never
+  wrap the modules in a container object. [house]
+
+Why: one decision point means a fix to one variant cannot silently skip another, and mypy checks both modules
+against the protocol. Source: Tommy, 2026-10-26, from the Claude/Codex host split in `tj-agents/core`;
+[enum HOWTO, Planet example](https://docs.python.org/3/howto/enum.html#planet),
+[PEP 544 protocols](https://peps.python.org/pep-0544/).
+
+```python
+from collections.abc import Mapping
+from enum import Enum
+from typing import Protocol
+
+import claude.plugins
+import codex.plugins
+
+
+class Host(Enum):
+    CLAUDE = ("claude", "CLAUDE_CONFIG_DIR")
+    CODEX = ("codex", "CODEX_HOME")
+
+    def __init__(self, executable: str, home_variable: str) -> None:
+        self.executable = executable
+        self.home_variable = home_variable
+
+
+class Plugins(Protocol):
+    def refresh(self, project: str) -> list[str]: ...
+
+
+PLUGINS: Mapping[Host, Plugins] = {Host.CLAUDE: claude.plugins, Host.CODEX: codex.plugins}
+
+plugins = PLUGINS[Host.CODEX]
+```
