@@ -5,7 +5,9 @@ Generated from `.agents/<plugin>/<kind>/<family>/<member>/SKILL.md`; a skill's n
 ## python
 
 - `build` — convention — core — `.agents/python/convention/build/SKILL.md`
+- `dispatch` — convention — core — `.agents/python/convention/dispatch/SKILL.md`
 - `domain-design` — convention — core — `.agents/python/convention/domain-design/SKILL.md`
+- `enums` — convention — core — `.agents/python/convention/enums/SKILL.md`
 - `errors` — convention — core — `.agents/python/convention/errors/SKILL.md`
 - `explanation` — convention — core — `.agents/python/convention/explanation/SKILL.md`
 - `libraries` — convention — core — `.agents/python/convention/libraries/SKILL.md`
