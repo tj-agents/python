@@ -1,7 +1,9 @@
 # python package capabilities
 
 - `build` — convention — core
+- `dispatch` — convention — core
 - `domain-design` — convention — core
+- `enums` — convention — core
 - `errors` — convention — core
 - `explanation` — convention — core
 - `libraries` — convention — core
