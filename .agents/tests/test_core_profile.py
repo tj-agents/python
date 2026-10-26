@@ -25,7 +25,10 @@ class PythonCoreProfileTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.config = sync_generated.load_config(ROOT)
-        cls.plugins = sync_generated.discover(ROOT, cls.config["namespace"])
+        payloads = sync_generated.load(ROOT / ".agents/plugins/payloads.json")
+        cls.plugins = sync_generated.discover(
+            ROOT, cls.config["namespace"], sync_generated.mapped_resource_directories(payloads)
+        )
         cls.skills = cls.plugins["python"]
 
     def test_python_is_the_only_plugin(self) -> None:
