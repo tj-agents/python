@@ -54,7 +54,7 @@ which skill owns which concern, and the references to teach from. Read both befo
 
 ## Agreeing a convention
 
-The convention skills (`python:style`, `python:structure`, `python:domain-design`, `python:errors`,
+The convention skills (`python:style`, `python:structure`, `python:modules`, `python:imports`, `python:domain-design`, `python:errors`,
 `python:testing`, `python:build`, `python:libraries`) hold two kinds of rule, and every rule names its kind:
 
 - **Baseline** rules apply to almost every Python codebase. `ecosystem` rules come from a PEP, the official

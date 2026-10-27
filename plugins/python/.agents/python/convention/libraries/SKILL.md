@@ -36,7 +36,7 @@ not a catalogue: a library appears here only once Tommy standardises on it.
   or using a submodule, needs a concrete reason beyond consuming the package.
   Why: keep upstream code separately maintained and dependency resolution reproducible. [house]
 - Keep external data and exceptions behind a narrow application boundary that exposes the types and errors
-  its callers need. Add only the translation the application uses. `python:structure` owns module naming:
+  its callers need. Add only the translation the application uses. `python:modules` owns module naming:
   `client.py` can own external calls, `auth.py` session handling, and `source.py` collection policy when those
   responsibilities exist; these filenames are examples, not a mandatory layout.
   Why: replace or upgrade the dependency without spreading its contracts through application logic. [house]

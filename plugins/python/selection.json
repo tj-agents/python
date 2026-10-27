@@ -12,7 +12,9 @@
       "enums",
       "errors",
       "explanation",
+      "imports",
       "libraries",
+      "modules",
       "structure",
       "style",
       "testing"
@@ -127,6 +129,20 @@
       ]
     },
     {
+      "name": "imports",
+      "kind": "convention",
+      "profile": "core",
+      "applicability": [
+        "Python projects"
+      ],
+      "requires": [
+        "python"
+      ],
+      "provenance": [
+        "house"
+      ]
+    },
+    {
       "name": "knowledge",
       "kind": "knowledge",
       "profile": "knowledge",
@@ -156,6 +172,20 @@
     },
     {
       "name": "libraries",
+      "kind": "convention",
+      "profile": "core",
+      "applicability": [
+        "Python projects"
+      ],
+      "requires": [
+        "python"
+      ],
+      "provenance": [
+        "house"
+      ]
+    },
+    {
+      "name": "modules",
       "kind": "convention",
       "profile": "core",
       "applicability": [
