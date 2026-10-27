@@ -45,8 +45,10 @@ Update a row's status when Tommy levels up an area.
 | `python:learning` | How to work with Tommy and how a convention is agreed |
 | `python:knowledge` | What Tommy has proven they know |
 | `python:direction` | The goal, the skill tree, this table, the growth rule and the references |
-| `python:style` | Syntax and idioms, naming, imports, annotations, formatting and lint policy |
-| `python:structure` | Package layout, modules, visibility, import-time behaviour and entry points |
+| `python:style` | Syntax and idioms, naming, annotations, formatting and lint policy |
+| `python:structure` | Project folders, distribution roots, workspaces and entry points |
+| `python:modules` | Our package hierarchy, namespaces, public APIs and internal implementation |
+| `python:imports` | Consuming package APIs, import conventions, dependency direction and import failures |
 | `python:domain-design` | Records, values, invariants and shared behaviour |
 | `python:enums` | Closed sets of choices and the data each member carries |
 | `python:dispatch` | Choosing behaviour by a key or type, selected once |
@@ -60,6 +62,10 @@ Update a row's status when Tommy levels up an area.
 New rule: a per-host home directory is read from each Host member instead of an if on the host.
 Owner: python:enums (data a member carries). Selecting host behaviour once goes to python:dispatch.
 Never: folding it into python:domain-design because enums are also data.
+
+New reusable capability: CLI owns path operations used by another repository.
+Owner: python:modules defines the acme_cli.paths API; python:imports governs the caller.
+Folders: python:structure; dependency resolution and runtime delivery: python:build.
 ```
 
 ## Growing beyond the core

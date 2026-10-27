@@ -1,6 +1,6 @@
 ---
 name: style
-description: Python style — modern syntax and idioms, naming, imports, type-annotation style, formatting, lint policy and the common Python footguns, as the generic baseline plus Tommy's recorded decisions. Read before writing or reviewing Python; only what is recorded here applies.
+description: Python style — modern syntax and idioms, naming, type annotations, formatting, lint policy and common Python footguns. Read before writing or reviewing Python; python:imports owns import conventions.
 kind: convention
 domain: python
 profile: core
@@ -11,8 +11,8 @@ provenance: house
 
 # Python style
 
-Owns syntax and idioms, naming, imports, annotation style, formatting and lint policy. Each rule names its kind
-(`python:learning`).
+Owns syntax and idioms, naming, annotation style, formatting and lint policy. `python:imports` owns imports.
+Each rule names its kind (`python:learning`).
 
 ## Baseline
 
@@ -26,8 +26,8 @@ Owns syntax and idioms, naming, imports, annotation style, formatting and lint p
 ### Naming
 
 - PEP 8 names: `snake_case` functions, variables and modules; `PascalCase` classes with acronyms capitalised
-  (`HTTPClient`); `UPPER_CASE` module constants; a leading underscore for anything not meant for use outside its
-  module. Enforced by ruff `N`. Source: PEP 8. [ecosystem]
+  (`HTTPClient`); `UPPER_CASE` module constants. `python:modules` owns public/internal visibility.
+  Enforced by ruff `N`. Source: PEP 8. [ecosystem]
 - Names do not shadow builtins (`id`, `type`, `list`, `input`). Enforced by ruff `A`. Source: PEP 8. [ecosystem]
 
 ### Annotations
@@ -41,12 +41,6 @@ Owns syntax and idioms, naming, imports, annotation style, formatting and lint p
   concrete. Source: typing.python.org best practices. [ecosystem]
 - `Any`, `cast` and `# type: ignore[code]` appear only at an untyped boundary, and an ignore always names its
   error code. Source: mypy docs. [bootstrap default]
-
-### Imports
-
-- Absolute imports at the top of the module, sorted into standard library, third-party and first-party groups by
-  ruff `I`. No wildcard imports. An import needed only for annotations in a cycle goes under `TYPE_CHECKING`.
-  Source: PEP 8. [bootstrap default]
 
 ### Idioms
 
@@ -76,3 +70,8 @@ Owns syntax and idioms, naming, imports, annotation style, formatting and lint p
 ## House
 
 _Nothing yet._ Propose a rule through `python:learning`'s convention procedure.
+
+```python
+def format_label(name: str, count: int) -> str:
+    return f"{name}: {count}"
+```

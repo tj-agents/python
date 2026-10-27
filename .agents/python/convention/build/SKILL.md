@@ -63,11 +63,11 @@ verification gate and CI. Each rule names its kind (`python:learning`).
   Tommy, 2026-10-27. [house]
 
 ```text
-Producer: packages/launch-paths/pyproject.toml defines the installable launch-paths distribution.
-Consumer: declare launch-paths using python:libraries' source policy; for Git, select packages/launch-paths.
+Producer: packages/acme-cli/pyproject.toml defines the installable acme-cli distribution.
+Consumer: declare acme-cli using python:libraries' source policy; for Git, select packages/acme-cli.
 Install: update uv.lock, then use uv sync --locked; the launcher uses that environment's Python.
 Verify: hide the producer checkout and invoke the installed entry point on Windows and Linux.
-Result: from launch_paths.search_path import prepend resolves the delivered package.
+Result: from acme_cli.paths import prepend resolves the delivered package.
 ```
 
 Source: [uv dependency sources](https://docs.astral.sh/uv/concepts/projects/dependencies/#git).
