@@ -74,8 +74,9 @@ __all__ = ["prepend"]
 from acme_cli.paths import prepend
 ```
 
-This example uses regular packages. A shared organisation namespace is a separate distribution decision,
-not a requirement to add more nesting.
+This example uses regular packages. `python:modules` decides whether independent distributions need a
+shared import namespace; `python:structure` defines that source layout and `python:build` owns its backend
+configuration and delivery. Shared namespaces are not required merely to add nested capabilities.
 References: [Python modules and packages](https://docs.python.org/3/tutorial/modules.html),
 [PEP 8 interfaces](https://peps.python.org/pep-0008/#public-and-internal-interfaces),
 [namespace packages](https://packaging.python.org/en/latest/guides/packaging-namespace-packages/).
