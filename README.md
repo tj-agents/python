@@ -8,7 +8,7 @@ Published as plugin `tj-agents/python` from the `tj-agents` marketplace.
 
 - Knowledge: `python:direction`, `python:knowledge`.
 - Policies: `python:learning`.
-- Conventions, the generic baseline plus Tommy's recorded decisions: `python:build`, `python:domain-design`, `python:errors`, `python:libraries`, `python:structure`, `python:style`, `python:testing`.
+- Conventions, the generic baseline plus Tommy's recorded decisions: `python:build`, `python:domain-design`, `python:errors`, `python:imports`, `python:libraries`, `python:modules`, `python:structure`, `python:style`, `python:testing`.
 - Utilities: `python:scaffold`.
 
 The tier applies only where a root `pyproject.toml`, `setup.py`, `setup.cfg` or `requirements.txt` exists

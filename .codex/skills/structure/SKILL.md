@@ -1,6 +1,6 @@
 ---
 name: structure
-description: Python project structure — the src package layout, modules and their names, public and internal names, import-time behaviour and entry points, as the generic baseline plus Tommy's recorded decisions; it prescribes no application architecture. Read before writing or reviewing Python that adds a package, module or entry point; only what is recorded here applies.
+description: Python project folders — distribution roots, src and test layout, workspace members and executable entry points. Use when creating or reorganising project folders; python:modules owns the code hierarchy and public APIs, and python:imports owns consuming them.
 kind: convention
 domain: python
 profile: core

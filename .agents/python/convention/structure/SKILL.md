@@ -1,6 +1,6 @@
 ---
 name: structure
-description: Python project structure — the src package layout, modules and their names, public and internal names, import-time behaviour and entry points, as the generic baseline plus Tommy's recorded decisions; it prescribes no application architecture. Read before writing or reviewing Python that adds a package, module or entry point; only what is recorded here applies.
+description: Python project folders — distribution roots, src and test layout, workspace members and executable entry points. Use when creating or reorganising project folders; python:modules owns the code hierarchy and public APIs, and python:imports owns consuming them.
 kind: convention
 domain: python
 profile: core
@@ -11,9 +11,9 @@ provenance: house
 
 # Python structure
 
-Owns the package layout, modules and their names, public and internal names, import-time behaviour and entry
-points. Each rule names its kind (`python:learning`). It prescribes no application architecture: layers,
-framework layouts and architectural patterns are house decisions or scoped capabilities (`python:direction`).
+Owns project and distribution folders and executable entry points. `python:modules` owns code namespaces,
+module boundaries and exports; `python:imports` owns consumption. Each rule names its kind
+(`python:learning`). Framework layouts remain scoped capabilities (`python:direction`).
 
 ## Baseline
 
@@ -24,19 +24,9 @@ framework layouts and architectural patterns are house decisions or scoped capab
   package `price_check`). It splits into a uv workspace only for a concrete reason, such as a separately published
   library or a separate deployable. Source: uv workspaces docs. [bootstrap default]
 - The package ships `py.typed`, so consumers and its own tests see its annotations. Source: PEP 561. [ecosystem]
-- A module is named for what it holds; never a `utils`, `helpers`, `common` or `misc` bucket. Why: a bucket name
-  says nothing, so everything drifts into it. Source: *Effective Python*. [bootstrap default]
-- A name or module not meant for use outside its package takes a leading underscore; that is Python's only
-  visibility contract. Source: PEP 8, "Public and Internal Interfaces". [ecosystem]
-- `__init__.py` holds no logic: it is empty or re-exports the package's public names and lists them in
-  `__all__`. Source: PEP 8. [bootstrap default]
-- Importing a module only defines things: no I/O, network calls, reading the environment into globals or logging
-  configuration at import time. Source: Python docs, `__main__` — "Top-level code environment". [ecosystem]
 - A program starts in a `main()` function exposed through `[project.scripts]` or `__main__.py`. Only the entry
   point reads process state (arguments, environment, configuration files); everything below takes those values
   as parameters. Source: Packaging User Guide, "Entry points". [bootstrap default]
-- An import cycle is fixed by moving the shared piece into its own module, never by importing inside a function.
-  Source: Python FAQ, "How can I have modules that mutually import each other?". [bootstrap default]
 
 ## House
 
@@ -45,13 +35,11 @@ framework layouts and architectural patterns are house decisions or scoped capab
   tests stay where the repository's layout puts them; the root needs no `src/` or `py.typed`. An independently
   consumed library can live in a package member below. Every other rule applies.
   Why: the host runs each file in place, so moving it into a package breaks loading. Tommy, 2026-10-18. [house]
-- Reusable code has one authored implementation in the repository responsible for its behavior. Consumers
-  import its public package API. Reuse an existing package when it already owns that behavior; a script or
-  mixed-language repository exposes an independent library under `packages/<distribution-name>/`, with its
-  own `pyproject.toml`, `src/<import_name>/`, `py.typed` and tests. Use a uv workspace for members within the
-  owner repository. Extract by independently consumed responsibility, not by individual helper, and migrate
-  callers and superseded implementations together. `python:build` owns dependency and runtime delivery.
-  Why: callers share one maintained implementation without depending on the owner's checkout location.
+- A script or mixed-language repository exposes an independently consumed Python library under
+  `packages/<distribution-name>/`, with its own `pyproject.toml`, `src/<import_name>/`, `py.typed` and tests.
+  Use a uv workspace for members within the owner repository. `python:modules` owns their responsibilities
+  and namespaces; `python:build` owns dependency and runtime delivery.
+  Why: host scripts and installable libraries need distinct project roots in the same repository.
   Tommy, 2026-10-27. [house]
 
 ## File structure
@@ -70,20 +58,19 @@ tests/
 
 This is the tree `python:scaffold` creates. Modules and subpackages are added as the project needs them.
 
-For example, a script repository can own an importable launch-path library alongside its scripts:
+For example, a script repository can contain an independently installable CLI library:
 
 ```text
 pyproject.toml                         # workspace and repository tooling
 uv.lock
-packages/launch-paths/
-  pyproject.toml                       # distribution: launch-paths
-  src/launch_paths/
+packages/acme-cli/
+  pyproject.toml                       # distribution: acme-cli
+  src/acme_cli/
     __init__.py
     py.typed
-    search_path.py                     # canonical implementation
-  tests/test_search_path.py
+  tests/
 ```
 
-After dependency installation, a consumer uses `from launch_paths.search_path import prepend`.
+`python:modules` defines the capability hierarchy inside `acme_cli`; `python:imports` defines its use.
 Sources: [PyPA src layout](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/)
 and [uv workspaces](https://docs.astral.sh/uv/concepts/projects/workspaces/).

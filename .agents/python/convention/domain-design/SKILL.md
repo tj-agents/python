@@ -36,7 +36,7 @@ decisions; none is recorded.
   for a stateless operation on standard-library or third-party objects, or one with no natural type owner.
   A function taking an object is the usual alternative to a C# extension method; it is called as
   `operation(value)`. Do not introduce a class containing only static methods to provide a namespace;
-  `python:structure` owns meaningful module names. [house]
+  `python:modules` owns meaningful module names. [house]
 - Use `staticmethod` when an operation belongs to an existing class but needs neither its instance nor the
   class itself; use `classmethod` when it needs the class, such as a named constructor. Add a wrapper or
   subclass only for a concrete modelling or behavioural need, not merely to obtain method-call syntax.
