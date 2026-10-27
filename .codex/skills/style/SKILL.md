@@ -1,6 +1,6 @@
 ---
 name: style
-description: Python style — modern syntax and idioms, naming, imports, type-annotation style, formatting, lint policy and the common Python footguns, as the generic baseline plus Tommy's recorded decisions. Read before writing or reviewing Python; only what is recorded here applies.
+description: Python style — modern syntax and idioms, naming, type annotations, formatting, lint policy and common Python footguns. Read before writing or reviewing Python; python:imports owns import conventions.
 kind: convention
 domain: python
 profile: core

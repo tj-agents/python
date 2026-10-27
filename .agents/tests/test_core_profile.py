@@ -12,6 +12,8 @@ SPEC.loader.exec_module(sync_generated)
 CONVENTIONS = {
     "style",
     "structure",
+    "modules",
+    "imports",
     "domain-design",
     "enums",
     "dispatch",

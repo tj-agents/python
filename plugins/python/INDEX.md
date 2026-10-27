@@ -6,7 +6,9 @@
 - `enums` — convention — core
 - `errors` — convention — core
 - `explanation` — convention — core
+- `imports` — convention — core
 - `libraries` — convention — core
+- `modules` — convention — core
 - `structure` — convention — core
 - `style` — convention — core
 - `testing` — convention — core

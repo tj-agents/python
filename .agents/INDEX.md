@@ -10,7 +10,9 @@ Generated from `.agents/<plugin>/<kind>/<family>/<member>/SKILL.md`; a skill's n
 - `enums` — convention — core — `.agents/python/convention/enums/SKILL.md`
 - `errors` — convention — core — `.agents/python/convention/errors/SKILL.md`
 - `explanation` — convention — core — `.agents/python/convention/explanation/SKILL.md`
+- `imports` — convention — core — `.agents/python/convention/imports/SKILL.md`
 - `libraries` — convention — core — `.agents/python/convention/libraries/SKILL.md`
+- `modules` — convention — core — `.agents/python/convention/modules/SKILL.md`
 - `structure` — convention — core — `.agents/python/convention/structure/SKILL.md`
 - `style` — convention — core — `.agents/python/convention/style/SKILL.md`
 - `testing` — convention — core — `.agents/python/convention/testing/SKILL.md`
