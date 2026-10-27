@@ -20,9 +20,10 @@ module boundaries and exports; `python:imports` owns consumption. Each rule name
 - Importable code lives under `src/<import_name>/`, so tests and tools run against the installed package rather
   than the working directory. Source: Packaging User Guide, "src layout vs flat layout"; `uv init --package`.
   [ecosystem]
-- A repository is one distribution with one top-level import package named for it (distribution `price-check`,
-  package `price_check`). It splits into a uv workspace only for a concrete reason, such as a separately published
-  library or a separate deployable. Source: uv workspaces docs. [bootstrap default]
+- A repository starts with one distribution and a regular import package named for it (distribution
+  `price-check`, package `price_check`). A deliberately shared native namespace follows `python:modules`
+  and the layout exception below. Split into a uv workspace only for a concrete reason, such as an
+  independently consumed library or a separate deployable. Source: uv workspaces docs. [bootstrap default]
 - The package ships `py.typed`, so consumers and its own tests see its annotations. Source: PEP 561. [ecosystem]
 - A program starts in a `main()` function exposed through `[project.scripts]` or `__main__.py`. Only the entry
   point reads process state (arguments, environment, configuration files); everything below takes those values
@@ -57,6 +58,18 @@ tests/
 ```
 
 This is the tree `python:scaffold` creates. Modules and subpackages are added as the project needs them.
+
+When `python:modules` selects a shared native namespace, the distribution's source layout is instead:
+
+```text
+src/acme/                 # shared namespace: no __init__.py
+  cli/                    # this distribution's owned regular package
+    __init__.py
+    py.typed
+```
+
+The distribution still has its own `pyproject.toml`; `python:build` owns the backend configuration for
+that import root. This optional layout does not change the regular-package scaffold default.
 
 For example, a script repository can contain an independently installable CLI library:
 
