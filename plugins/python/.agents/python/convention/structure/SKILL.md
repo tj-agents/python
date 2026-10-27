@@ -41,9 +41,18 @@ framework layouts and architectural patterns are house decisions or scoped capab
 ## House
 
 - A **script repository**, whose Python is standalone scripts that a host loads by path (agent plugin skills,
-  hooks and their tooling), is not a package. Its `pyproject.toml` sets `[tool.uv] package = false`, and each script and its
-  tests stay where the repository's layout puts them, with no `src/` or `py.typed`. Every other rule applies.
+  hooks and their tooling), keeps its root non-packaged with `[tool.uv] package = false`. Scripts and their
+  tests stay where the repository's layout puts them; the root needs no `src/` or `py.typed`. An independently
+  consumed library can live in a package member below. Every other rule applies.
   Why: the host runs each file in place, so moving it into a package breaks loading. Tommy, 2026-10-18. [house]
+- Reusable code has one authored implementation in the repository responsible for its behavior. Consumers
+  import its public package API. Reuse an existing package when it already owns that behavior; a script or
+  mixed-language repository exposes an independent library under `packages/<distribution-name>/`, with its
+  own `pyproject.toml`, `src/<import_name>/`, `py.typed` and tests. Use a uv workspace for members within the
+  owner repository. Extract by independently consumed responsibility, not by individual helper, and migrate
+  callers and superseded implementations together. `python:build` owns dependency and runtime delivery.
+  Why: callers share one maintained implementation without depending on the owner's checkout location.
+  Tommy, 2026-10-27. [house]
 
 ## File structure
 
@@ -60,3 +69,21 @@ tests/
 ```
 
 This is the tree `python:scaffold` creates. Modules and subpackages are added as the project needs them.
+
+For example, a script repository can own an importable launch-path library alongside its scripts:
+
+```text
+pyproject.toml                         # workspace and repository tooling
+uv.lock
+packages/launch-paths/
+  pyproject.toml                       # distribution: launch-paths
+  src/launch_paths/
+    __init__.py
+    py.typed
+    search_path.py                     # canonical implementation
+  tests/test_search_path.py
+```
+
+After dependency installation, a consumer uses `from launch_paths.search_path import prepend`.
+Sources: [PyPA src layout](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/)
+and [uv workspaces](https://docs.astral.sh/uv/concepts/projects/workspaces/).

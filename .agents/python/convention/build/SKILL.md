@@ -52,3 +52,22 @@ verification gate and CI. Each rule names its kind (`python:learning`).
   test directories, and generated copies are excluded from the gate. The 3.12 floor applies to shipped scripts
   too: a `sys.version_info` guard checks `(3, 12)`, and documentation naming a minimum names 3.12.
   Tommy, 2026-10-18. [house]
+- Repository-owned libraries (`python:structure`) declare build metadata and runtime dependencies in each
+  package member's `pyproject.toml`; their workspace shares the root `uv.lock`. Other repositories declare
+  ordinary package dependencies in their own projects and lockfiles, following `python:libraries` for source
+  selection. A Git dependency on a nested package specifies its `subdirectory`. The deployed entry point must
+  use an interpreter environment containing those dependencies; a development environment or dependency
+  declaration alone does not supply imports to a host-invoked script. Verify the deployed entry point on
+  Windows and Linux with the producer checkout unavailable.
+  Why: dependency delivery must work independently of a developer's local repositories.
+  Tommy, 2026-10-27. [house]
+
+```text
+Producer: packages/launch-paths/pyproject.toml defines the installable launch-paths distribution.
+Consumer: declare launch-paths using python:libraries' source policy; for Git, select packages/launch-paths.
+Install: update uv.lock, then use uv sync --locked; the launcher uses that environment's Python.
+Verify: hide the producer checkout and invoke the installed entry point on Windows and Linux.
+Result: from launch_paths.search_path import prepend resolves the delivered package.
+```
+
+Source: [uv dependency sources](https://docs.astral.sh/uv/concepts/projects/dependencies/#git).
