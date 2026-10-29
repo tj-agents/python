@@ -12,6 +12,10 @@
       "setup.py",
       "setup.cfg",
       "requirements.txt"
+    ],
+    "globs": [
+      "*.py",
+      "*.pyi"
     ]
   }
 }
