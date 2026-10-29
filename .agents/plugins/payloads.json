@@ -3,5 +3,12 @@
     "python": [
       "python"
     ]
-  }
+  },
+  "resources": [
+    {
+      "plugin": "python",
+      "source": ".agents/python/learning",
+      "destination": ".agents/python/learning"
+    }
+  ]
 }

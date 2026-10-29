@@ -1,18 +1,17 @@
 # python package capabilities
 
-- `build` — convention — core
-- `dispatch` — convention — core
-- `domain-design` — convention — core
-- `enums` — convention — core
-- `errors` — convention — core
-- `explanation` — convention — core
-- `imports` — convention — core
-- `libraries` — convention — core
-- `modules` — convention — core
-- `structure` — convention — core
-- `style` — convention — core
-- `testing` — convention — core
-- `direction` — knowledge — knowledge
-- `knowledge` — knowledge — knowledge
-- `learning` — policy — knowledge
-- `scaffold` — utility — scaffold
+- `learning` — learning — knowledge
+- `scaffold` — operation — scaffold
+- `direction` — reference — knowledge
+- `build` — standard — core
+- `dispatch` — standard — core
+- `domain-design` — standard — core
+- `enums` — standard — core
+- `errors` — standard — core
+- `explanation` — standard — core
+- `imports` — standard — core
+- `libraries` — standard — core
+- `modules` — standard — core
+- `structure` — standard — core
+- `style` — standard — core
+- `testing` — standard — core
