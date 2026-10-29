@@ -13,14 +13,14 @@ class PythonTierTests(unittest.TestCase):
 
     def test_applies_only_where_python_is_present(self) -> None:
         self.assertEqual("stack-present", self.tier["applies"])
-        self.assertEqual(["tj-agents/python"], self.tier["owner_repository"])
+        self.assertIn({"remote": r"^tj\-agents/python$"}, self.tier["detect"]["any"])
 
     def test_detects_root_project_files_not_stray_scripts(self) -> None:
         self.assertEqual(
             ["pyproject.toml", "setup.py", "setup.cfg", "requirements.txt"],
-            self.tier["detect"]["files"],
+            [predicate["file"] for predicate in self.tier["detect"]["any"] if "file" in predicate],
         )
-        self.assertNotIn("globs", self.tier["detect"])
+        self.assertTrue(all("glob" not in predicate for predicate in self.tier["detect"]["any"]))
 
 
 if __name__ == "__main__":
