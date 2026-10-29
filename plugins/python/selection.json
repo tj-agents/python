@@ -21,7 +21,6 @@
     ],
     "knowledge": [
       "direction",
-      "knowledge",
       "learning"
     ],
     "scaffold": [
@@ -32,7 +31,7 @@
   "skills": [
     {
       "name": "build",
-      "kind": "convention",
+      "kind": "standard",
       "profile": "core",
       "applicability": [
         "Python projects"
@@ -46,7 +45,7 @@
     },
     {
       "name": "direction",
-      "kind": "knowledge",
+      "kind": "reference",
       "profile": "knowledge",
       "applicability": [
         "Python learning"
@@ -60,7 +59,7 @@
     },
     {
       "name": "dispatch",
-      "kind": "convention",
+      "kind": "standard",
       "profile": "core",
       "applicability": [
         "Python projects"
@@ -74,7 +73,7 @@
     },
     {
       "name": "domain-design",
-      "kind": "convention",
+      "kind": "standard",
       "profile": "core",
       "applicability": [
         "Python projects"
@@ -88,7 +87,7 @@
     },
     {
       "name": "enums",
-      "kind": "convention",
+      "kind": "standard",
       "profile": "core",
       "applicability": [
         "Python projects"
@@ -102,7 +101,7 @@
     },
     {
       "name": "errors",
-      "kind": "convention",
+      "kind": "standard",
       "profile": "core",
       "applicability": [
         "Python projects"
@@ -116,7 +115,7 @@
     },
     {
       "name": "explanation",
-      "kind": "convention",
+      "kind": "standard",
       "profile": "core",
       "applicability": [
         "Python projects"
@@ -130,7 +129,7 @@
     },
     {
       "name": "imports",
-      "kind": "convention",
+      "kind": "standard",
       "profile": "core",
       "applicability": [
         "Python projects"
@@ -143,22 +142,8 @@
       ]
     },
     {
-      "name": "knowledge",
-      "kind": "knowledge",
-      "profile": "knowledge",
-      "applicability": [
-        "Python learning"
-      ],
-      "requires": [
-        "python"
-      ],
-      "provenance": [
-        "house"
-      ]
-    },
-    {
       "name": "learning",
-      "kind": "policy",
+      "kind": "learning",
       "profile": "knowledge",
       "applicability": [
         "Python projects and learning"
@@ -172,7 +157,7 @@
     },
     {
       "name": "libraries",
-      "kind": "convention",
+      "kind": "standard",
       "profile": "core",
       "applicability": [
         "Python projects"
@@ -186,7 +171,7 @@
     },
     {
       "name": "modules",
-      "kind": "convention",
+      "kind": "standard",
       "profile": "core",
       "applicability": [
         "Python projects"
@@ -200,7 +185,7 @@
     },
     {
       "name": "scaffold",
-      "kind": "utility",
+      "kind": "operation",
       "profile": "scaffold",
       "applicability": [
         "new Python projects"
@@ -214,7 +199,7 @@
     },
     {
       "name": "structure",
-      "kind": "convention",
+      "kind": "standard",
       "profile": "core",
       "applicability": [
         "Python projects"
@@ -228,7 +213,7 @@
     },
     {
       "name": "style",
-      "kind": "convention",
+      "kind": "standard",
       "profile": "core",
       "applicability": [
         "Python projects"
@@ -242,7 +227,7 @@
     },
     {
       "name": "testing",
-      "kind": "convention",
+      "kind": "standard",
       "profile": "core",
       "applicability": [
         "Python projects"

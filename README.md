@@ -6,13 +6,20 @@ Published as plugin `tj-agents/python` from the `tj-agents` marketplace.
 
 ## Skills
 
-- Knowledge: `python:direction`, `python:knowledge`.
-- Policies: `python:learning`.
-- Conventions, the generic baseline plus Tommy's recorded decisions: `python:build`, `python:domain-design`, `python:errors`, `python:imports`, `python:libraries`, `python:modules`, `python:structure`, `python:style`, `python:testing`.
-- Utilities: `python:scaffold`.
+- Learning: `python:learning`.
+- Reference: `python:direction`.
+- Standards, the generic baseline plus Tommy's recorded decisions: `python:build`, `python:dispatch`,
+  `python:domain-design`, `python:enums`, `python:errors`, `python:explanation`, `python:imports`,
+  `python:libraries`, `python:modules`, `python:structure`, `python:style`, `python:testing`.
+- Operation: `python:scaffold`.
+
+Canonical skills live at `.agents/python/skills/<subject>/SKILL.md`, independently of kind.
+The supporting [learner record](.agents/python/learning/knowledge.md) and
+[learning direction](.agents/python/learning/direction.md) retain demonstrated knowledge, goals and progress;
+`python:learning` owns their updates. They are ordinary resources rather than discovery entries.
 
 The tier applies only where a root `pyproject.toml`, `setup.py`, `setup.cfg` or `requirements.txt` exists
-(`tiers/python.json` `applies: stack-present`).
+(`.agents/tiers/python.json` `applies: stack-present`).
 
 ## Authoring and verification
 

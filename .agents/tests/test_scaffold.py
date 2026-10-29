@@ -12,7 +12,7 @@ import tomllib
 import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
-SCRIPT = ROOT / ".agents/python/utility/scaffold/scripts/new_python_project.py"
+SCRIPT = ROOT / ".agents/python/skills/scaffold/scripts/new_python_project.py"
 SPEC = importlib.util.spec_from_file_location("new_python_project", SCRIPT)
 scaffold = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(scaffold)

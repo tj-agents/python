@@ -9,7 +9,7 @@ SPEC = importlib.util.spec_from_file_location("sync_generated", ROOT / ".agents"
 sync_generated = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(sync_generated)
 
-CONVENTIONS = {
+STANDARDS = {
     "style",
     "structure",
     "modules",
@@ -38,14 +38,14 @@ class PythonCoreProfileTests(unittest.TestCase):
     def test_python_is_the_only_plugin(self) -> None:
         self.assertEqual({"python"}, set(self.plugins))
 
-    def test_core_is_exactly_the_conventions(self) -> None:
+    def test_core_is_exactly_the_standards(self) -> None:
         core = {name for name, skill in self.skills.items() if skill["metadata"]["profile"] == "core"}
-        self.assertEqual(CONVENTIONS, core)
-        for name in CONVENTIONS:
-            self.assertEqual("convention", self.skills[name]["kind"])
+        self.assertEqual(STANDARDS, core)
+        for name in STANDARDS:
+            self.assertEqual("standard", self.skills[name]["kind"])
 
-    def test_every_convention_separates_baseline_from_house(self) -> None:
-        for name in CONVENTIONS:
+    def test_every_standard_separates_baseline_from_house(self) -> None:
+        for name in STANDARDS:
             body = self.skills[name]["body"]
             self.assertIn("## Baseline", body, name)
             self.assertIn("## House", body, name)
@@ -55,12 +55,14 @@ class PythonCoreProfileTests(unittest.TestCase):
 
     def test_scaffold_is_its_own_profile(self) -> None:
         self.assertEqual("scaffold", self.skills["scaffold"]["metadata"]["profile"])
-        self.assertEqual("utility", self.skills["scaffold"]["kind"])
+        self.assertEqual("operation", self.skills["scaffold"]["kind"])
 
-    def test_knowledge_tier_keeps_its_own_profile(self) -> None:
-        for name in ("learning", "knowledge", "direction"):
+    def test_learning_and_reference_keep_distinct_responsibilities(self) -> None:
+        for name in ("learning", "direction"):
             self.assertEqual("knowledge", self.skills[name]["metadata"]["profile"])
-        self.assertEqual("policy", self.skills["learning"]["kind"])
+        self.assertEqual("learning", self.skills["learning"]["kind"])
+        self.assertEqual("reference", self.skills["direction"]["kind"])
+        self.assertNotIn("knowledge", self.skills)
 
 
 if __name__ == "__main__":

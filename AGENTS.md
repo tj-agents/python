@@ -1,9 +1,9 @@
 # python
 
-This repository uses the plugin layout `template:check` documents and enforces
-(https://github.com/tj-agents/template). Authored skills live once under `.agents/<plugin>/<kind>/<name>/SKILL.md`,
-with each skill's scripts and templates beside it; related skills share a family folder, family first
-(`state/client/` publishes `state-client`). `.agents/sync_generated.py`, `.agents/sync-generated.ps1`,
+This repository uses the plugin layout `template:structure` owns and `template:check` enforces
+(https://github.com/tj-agents/template). Authored skills live once under `.agents/<namespace>/skills/<subject>/SKILL.md`,
+with kind in metadata and each skill's scripts and templates beside it. Subject families are optional;
+`state/client/` publishes `state-client`. `.agents/sync_generated.py`, `.agents/sync-generated.ps1`,
 `.gitattributes`, `.gitignore`, `CLAUDE.md` and `.github/workflows/ci.yml` are vendored from Template's main branch.
 Change them in Template, then run `template:update` to refresh the exact vendored content.
 
@@ -11,9 +11,10 @@ Change them in Template, then run `template:update` to refresh the exact vendore
 `pwsh .agents/sync-generated.ps1` after authored changes and require `pwsh .agents/sync-generated.ps1 -Check`
 before delivery.
 
-`knowledge` is Tommy's progress record: change it only under `learning`'s Progress rules. A `convention`
-skill holds the generic baseline and Tommy's house rules; a rule changes only through `learning`'s convention
-procedure, and nothing framework- or application-specific enters core (`direction`).
+Learner data lives in `.agents/python/learning/knowledge.md` and `direction.md`; change it only under
+`python:learning`'s Progress rules. Construction guidance has kind `standard`, teaching has kind `learning`,
+orientation has kind `reference` and scaffolding has kind `operation`. Standards hold the generic baseline
+and Tommy's house rules; changes follow `python:learning`'s agreement and growth procedures.
 
 <!-- BEGIN personal:rules sha256:eee7a719bb90e67aaa81ac101a45836dd099bc745fee61216c99ec7d6075f12d -->
 # Personal rules

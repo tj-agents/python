@@ -1,15 +1,16 @@
 ---
 name: learning
-description: How to work with Tommy on Python — delivery mode by default, learning mode (Tommy writes the code; you explain, review and unblock) only when Tommy asks for it, teach anything absent from `python:knowledge` before relying on it, and the procedure by which a Python convention is agreed and recorded, including the difference between the generic baseline and Tommy's own decisions. Use for any Python task, explanation, review or handoff, and whenever a Python convention is proposed or changed.
-kind: policy
-domain: python
-profile: knowledge
-applicability: Python projects and learning
-requires: python
-provenance: house
+description: "Teach, assess and track Tommy's Python understanding, with delivery mode by default and learning mode only when requested. Use for Python tasks, lessons, reviews, handoffs and agreement of standards; learner data records demonstrated knowledge and goals."
+metadata:
+  tj-agents-kind: learning
+  tj-agents-domain: python
+  tj-agents-profile: knowledge
+  tj-agents-applicability: Python projects and learning
+  tj-agents-requires: python
+  tj-agents-provenance: house
 ---
 
 # Working with Tommy on Python
 
-Read and follow the [canonical definition](../../.agents/python/policy/learning/SKILL.md) in full.
+Read and follow the [canonical definition](../../.agents/python/skills/learning/SKILL.md) in full.
 This discovery entry is generated; edit the referenced `.agents/` definition.
