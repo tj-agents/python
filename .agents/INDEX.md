@@ -1,22 +1,21 @@
 # python capabilities
 
-Generated from `.agents/<plugin>/<kind>/<family>/<member>/SKILL.md`; a skill's name is its folder path below the kind folder joined by hyphens.
+Generated from `.agents/<plugin>/skills/<family>/<member>/SKILL.md`; a skill's name is its folder path below skills/ joined by hyphens.
 
 ## python
 
-- `build` — convention — core — `.agents/python/convention/build/SKILL.md`
-- `dispatch` — convention — core — `.agents/python/convention/dispatch/SKILL.md`
-- `domain-design` — convention — core — `.agents/python/convention/domain-design/SKILL.md`
-- `enums` — convention — core — `.agents/python/convention/enums/SKILL.md`
-- `errors` — convention — core — `.agents/python/convention/errors/SKILL.md`
-- `explanation` — convention — core — `.agents/python/convention/explanation/SKILL.md`
-- `imports` — convention — core — `.agents/python/convention/imports/SKILL.md`
-- `libraries` — convention — core — `.agents/python/convention/libraries/SKILL.md`
-- `modules` — convention — core — `.agents/python/convention/modules/SKILL.md`
-- `structure` — convention — core — `.agents/python/convention/structure/SKILL.md`
-- `style` — convention — core — `.agents/python/convention/style/SKILL.md`
-- `testing` — convention — core — `.agents/python/convention/testing/SKILL.md`
-- `direction` — knowledge — knowledge — `.agents/python/knowledge/direction/SKILL.md`
-- `knowledge` — knowledge — knowledge — `.agents/python/knowledge/knowledge/SKILL.md`
-- `learning` — policy — knowledge — `.agents/python/policy/learning/SKILL.md`
-- `scaffold` — utility — scaffold — `.agents/python/utility/scaffold/SKILL.md`
+- `learning` — learning — knowledge — `.agents/python/skills/learning/SKILL.md`
+- `scaffold` — operation — scaffold — `.agents/python/skills/scaffold/SKILL.md`
+- `direction` — reference — knowledge — `.agents/python/skills/direction/SKILL.md`
+- `build` — standard — core — `.agents/python/skills/build/SKILL.md`
+- `dispatch` — standard — core — `.agents/python/skills/dispatch/SKILL.md`
+- `domain-design` — standard — core — `.agents/python/skills/domain-design/SKILL.md`
+- `enums` — standard — core — `.agents/python/skills/enums/SKILL.md`
+- `errors` — standard — core — `.agents/python/skills/errors/SKILL.md`
+- `explanation` — standard — core — `.agents/python/skills/explanation/SKILL.md`
+- `imports` — standard — core — `.agents/python/skills/imports/SKILL.md`
+- `libraries` — standard — core — `.agents/python/skills/libraries/SKILL.md`
+- `modules` — standard — core — `.agents/python/skills/modules/SKILL.md`
+- `structure` — standard — core — `.agents/python/skills/structure/SKILL.md`
+- `style` — standard — core — `.agents/python/skills/style/SKILL.md`
+- `testing` — standard — core — `.agents/python/skills/testing/SKILL.md`
