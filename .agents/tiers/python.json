@@ -1,17 +1,24 @@
 {
-  "schema_version": 1,
   "tier": "python",
   "stack": "Python",
   "applies": "stack-present",
-  "owner_repository": [
-    "tj-agents/python"
-  ],
   "detect": {
-    "files": [
-      "pyproject.toml",
-      "setup.py",
-      "setup.cfg",
-      "requirements.txt"
+    "any": [
+      {
+        "file": "pyproject.toml"
+      },
+      {
+        "file": "setup.py"
+      },
+      {
+        "file": "setup.cfg"
+      },
+      {
+        "file": "requirements.txt"
+      },
+      {
+        "remote": "^tj\\-agents/python$"
+      }
     ]
   }
 }
