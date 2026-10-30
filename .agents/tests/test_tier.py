@@ -15,12 +15,12 @@ class PythonTierTests(unittest.TestCase):
         self.assertEqual("stack-present", self.tier["applies"])
         self.assertEqual(["tj-agents/python"], self.tier["owner_repository"])
 
-    def test_detects_root_project_files_not_stray_scripts(self) -> None:
+    def test_detects_project_files_and_python_sources(self) -> None:
         self.assertEqual(
             ["pyproject.toml", "setup.py", "setup.cfg", "requirements.txt"],
             self.tier["detect"]["files"],
         )
-        self.assertNotIn("globs", self.tier["detect"])
+        self.assertEqual(["*.py"], self.tier["detect"]["globs"])
 
 
 if __name__ == "__main__":
