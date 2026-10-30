@@ -12,8 +12,10 @@ Published as plugin `tj-agents/python` from the `tj-agents` marketplace.
 - Utilities: `python:scaffold`.
 
 The tier applies where a root `pyproject.toml`, `setup.py`, `setup.cfg` or `requirements.txt` exists, or
-Python source or stub files occur at any depth (`tiers/python.json` `applies: stack-present`). This includes
-script repositories and host runtime code beneath directories such as `.agents/`, `.codex/` and `.claude/`.
+Python source or stub files are discovered (`tiers/python.json` `applies: stack-present`). In Git
+repositories this includes script and host runtime code at any depth, including `.agents/`, `.codex/`
+and `.claude/`; ignored untracked files are excluded. Without Git, the shared reader's fallback searches
+visible directories through four levels and cannot discover hidden host runtime directories.
 
 ## Authoring and verification
 

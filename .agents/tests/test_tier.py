@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 import json
-from fnmatch import fnmatch
 from pathlib import Path
+import subprocess
+import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -23,25 +24,40 @@ class PythonTierTests(unittest.TestCase):
         )
 
     def test_detects_python_sources_without_a_package_manifest(self) -> None:
-        for path in (
+        sources = (
             "run.py",
             "scripts/refresh.py",
             ".agents/agent/runtime/permissions.py",
             ".codex/runtime/listener.py",
             ".claude/runtime/permissions.py",
             "src/example/contract.pyi",
-        ):
-            with self.subTest(path=path):
-                self.assertTrue(
-                    any(fnmatch(Path(path).name, pattern) for pattern in self.tier["detect"]["globs"])
-                )
-
-    def test_does_not_detect_unrelated_sources(self) -> None:
-        for path in ("README.md", "main.ts", "install.ps1", "install.sh"):
-            with self.subTest(path=path):
-                self.assertFalse(
-                    any(fnmatch(Path(path).name, pattern) for pattern in self.tier["detect"]["globs"])
-                )
+            "one/two/three/four/five/deep.py",
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            project = Path(directory)
+            subprocess.run(["git", "init", "-q", directory], check=True, timeout=15)
+            for name in (*sources, "README.md", "main.ts", "install.ps1", "vendor/ignored.py"):
+                path = project / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text("", encoding="utf-8")
+            (project / ".gitignore").write_text("vendor/\n", encoding="utf-8")
+            subprocess.run(
+                ["git", "-C", directory, "add", "--", ".codex/runtime/listener.py"],
+                check=True,
+                timeout=15,
+            )
+            result = subprocess.run(
+                [
+                    "git", "-C", directory, "ls-files", "-z", "--cached", "--others",
+                    "--exclude-standard", "--", *self.tier["detect"]["globs"],
+                ],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                check=True,
+                timeout=15,
+            )
+            self.assertEqual(set(sources), set(result.stdout.rstrip("\0").split("\0")))
 
 
 if __name__ == "__main__":
