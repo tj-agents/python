@@ -11,8 +11,11 @@ Published as plugin `tj-agents/python` from the `tj-agents` marketplace.
 - Conventions, the generic baseline plus Tommy's recorded decisions: `python:build`, `python:domain-design`, `python:errors`, `python:imports`, `python:libraries`, `python:modules`, `python:structure`, `python:style`, `python:testing`.
 - Utilities: `python:scaffold`.
 
-The tier applies only where a root `pyproject.toml`, `setup.py`, `setup.cfg` or `requirements.txt` exists
-(`tiers/python.json` `applies: stack-present`).
+The tier applies where a root `pyproject.toml`, `setup.py`, `setup.cfg` or `requirements.txt` exists, or
+Python source or stub files are discovered (`tiers/python.json` `applies: stack-present`). In Git
+repositories this includes script and host runtime code at any depth, including `.agents/`, `.codex/`
+and `.claude/`; ignored untracked files are excluded. Without Git, the shared reader's fallback searches
+visible directories through four levels and cannot discover hidden host runtime directories.
 
 ## Authoring and verification
 
