@@ -21,5 +21,6 @@
     "category": "Productivity",
     "capabilities": [],
     "defaultPrompt": "Teach me the next Python concept my current task needs."
-  }
+  },
+  "version": "e50f24106a0c"
 }
