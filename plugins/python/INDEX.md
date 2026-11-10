@@ -15,4 +15,5 @@
 - `direction` — knowledge — knowledge
 - `knowledge` — knowledge — knowledge
 - `learning` — policy — knowledge
+- `check` — utility — verification
 - `scaffold` — utility — scaffold

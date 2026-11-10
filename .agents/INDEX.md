@@ -19,4 +19,5 @@ Generated from `.agents/<plugin>/<kind>/<family>/<member>/SKILL.md`; a skill's n
 - `direction` — knowledge — knowledge — `.agents/python/knowledge/direction/SKILL.md`
 - `knowledge` — knowledge — knowledge — `.agents/python/knowledge/knowledge/SKILL.md`
 - `learning` — policy — knowledge — `.agents/python/policy/learning/SKILL.md`
+- `check` — utility — verification — `.agents/python/utility/check/SKILL.md`
 - `scaffold` — utility — scaffold — `.agents/python/utility/scaffold/SKILL.md`

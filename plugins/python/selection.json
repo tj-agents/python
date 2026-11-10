@@ -26,6 +26,9 @@
     ],
     "scaffold": [
       "scaffold"
+    ],
+    "verification": [
+      "check"
     ]
   },
   "compatibilitySkillAliases": {},
@@ -39,6 +42,20 @@
       ],
       "requires": [
         "python"
+      ],
+      "provenance": [
+        "house"
+      ]
+    },
+    {
+      "name": "check",
+      "kind": "utility",
+      "profile": "verification",
+      "applicability": [
+        "Python projects"
+      ],
+      "requires": [
+        "Python 3.12+"
       ],
       "provenance": [
         "house"

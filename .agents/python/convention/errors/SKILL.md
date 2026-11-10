@@ -23,7 +23,7 @@ Owns exception types, raising, catching, propagation and cleanup. Each rule name
 - A `try` body holds only the statement that can raise; the success path goes in `else`. Source: PEP 8; Python tutorial,
   "Handling Exceptions". Enforced by Ruff `TRY300`. [ecosystem]
 - A package's own failures are exceptions named `...Error`, defined in the module that raises them and rooted at
-  one `<Package>Error(Exception)` base, so callers can catch the package as a whole or one failure. Source:
+  one `<Package>Error(Exception)` base, so callers can catch the package as a whole or one failure. Enforced by `PY011`. Source:
   PEP 8, "Exception Names". [bootstrap default]
 - A built-in exception keeps its standard meaning (`ValueError` for a bad value, `TypeError`, `KeyError`,
   `NotImplementedError`); a package does not re-raise one under its own name. Source: built-in exceptions docs.
@@ -32,7 +32,7 @@ Owns exception types, raising, catching, propagation and cleanup. Each rule name
   outcome (`find`, `get`). Source: *Effective Python*. [bootstrap default]
 - `assert` states an invariant that holds unless the code is wrong; it never validates input, because `python -O`
   removes it. Source: language reference, "The assert statement". [ecosystem]
-- Cleanup is a `with` block or `try`/`finally`, never `__del__`. Source: PEP 343; data model docs. [ecosystem]
+- Cleanup is a `with` block or `try`/`finally`, never `__del__`. Enforced by `PY012`. Source: PEP 343; data model docs. [ecosystem]
 - An entry point catches the package's base error to print one message and exit non-zero; anything else
   propagates with its traceback. Source: follows `python:structure`'s entry-point rule. [bootstrap default]
 

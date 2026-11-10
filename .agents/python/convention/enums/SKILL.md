@@ -24,7 +24,7 @@ behaviour per member belongs to `python:dispatch`.
 ## House
 
 - Data that differs per member lives on the member, assigned in the enum's `__init__`, never in a parallel
-  dict or an `if` on the member. [house]
+  dict or an `if` on the member. Enforced for identifiable enum keys by `PY013`. [house]
 
 Why: a member then carries everything that varies with it, so adding a member is one edit. Source: Tommy,
 2026-10-26, from the Claude/Codex host split in `tj-agents/agent`;

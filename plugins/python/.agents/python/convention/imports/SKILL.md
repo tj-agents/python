@@ -29,7 +29,7 @@ Each rule names its kind (`python:learning`).
   the shared contract or behaviour to its real owner and updating both callers. Do not move a runtime
   import into a function merely to hide the cycle. An annotation-only dependency may use
   `TYPE_CHECKING` with postponed annotations when it is not needed for runtime evaluation.
-  Source: Python FAQ, "How can I have modules that mutually import each other?"; typing specification.
+  Cycles enforced by `PY010`; declared layers by import-linter. Source: Python FAQ, "How can I have modules that mutually import each other?"; typing specification.
   [bootstrap default]
 - Use `python -m package.module` or an installed entry point when execution requires package context.
   Running a nested source file directly is not a substitute for installing its distribution.

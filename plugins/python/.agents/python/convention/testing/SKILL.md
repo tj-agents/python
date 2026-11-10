@@ -20,7 +20,7 @@ Owns test layout, naming, fixtures, isolation and the pytest configuration. Each
   Enforced by Ruff `PT009`, `TID251`. Source: pytest docs. [ecosystem]
 - Tests live in the top-level `tests/`, outside the package, with no `__init__.py`, under
   `--import-mode=importlib`. A test module mirrors the module it tests: `src/pkg/parsing.py` is tested by
-  `tests/test_parsing.py`. Source: pytest, "Good Integration Practices". [ecosystem]
+  `tests/test_parsing.py`. Enforced by `PY014`. Source: pytest, "Good Integration Practices". [ecosystem]
 - A test is named for the behaviour it proves: `test_<unit>_<behaviour>`, such as
   `test_parse_rejects_empty_input`. Source: pytest docs. [bootstrap default]
 - Shared setup is a fixture in the nearest `conftest.py`, function-scoped unless a wider scope is measurably
@@ -29,7 +29,7 @@ Owns test layout, naming, fixtures, isolation and the pytest configuration. Each
 - One behaviour over several inputs is one `@pytest.mark.parametrize` test. An expected exception is
   `pytest.raises(XError, match=...)`. Enforced by Ruff `PT006`, `PT011`. Source: pytest docs. [ecosystem]
 - Tests are deterministic and independent: no network, no reliance on order, and time or randomness passed in
-  rather than read from the system. Network isolation enforced by pytest-socket.
+  rather than read from the system. Enforced for direct clock reads by `PY017`; network isolation by pytest-socket.
   Source: pytest, "Good Integration Practices". [ecosystem]
 - Prefer real objects and small in-memory fakes. `unittest.mock` patches only an external boundary that cannot
   be passed in. Source: unittest.mock docs, "Where to patch". [bootstrap default]
