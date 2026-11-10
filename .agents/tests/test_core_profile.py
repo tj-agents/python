@@ -1,14 +1,13 @@
 from __future__ import annotations
 
-import importlib.util
+import runpy
 from pathlib import Path
-import unittest
+from types import SimpleNamespace
+from typing import Any, cast
 
-ROOT = Path(__file__).resolve().parents[2]
-SPEC = importlib.util.spec_from_file_location("sync_generated", ROOT / ".agents" / "sync_generated.py")
-sync_generated = importlib.util.module_from_spec(SPEC)
-SPEC.loader.exec_module(sync_generated)
+import pytest
 
+ROOT = Path(__file__).parents[2]
 CONVENTIONS = {
     "style",
     "structure",
@@ -25,43 +24,59 @@ CONVENTIONS = {
 }
 
 
-class PythonCoreProfileTests(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls) -> None:
-        cls.config = sync_generated.load_config(ROOT)
-        payloads = sync_generated.load(ROOT / ".agents/plugins/payloads.json")
-        cls.plugins = sync_generated.discover(
-            ROOT, cls.config["namespace"], sync_generated.mapped_resource_directories(payloads)
-        )
-        cls.skills = cls.plugins["python"]
-
-    def test_python_is_the_only_plugin(self) -> None:
-        self.assertEqual({"python"}, set(self.plugins))
-
-    def test_core_is_exactly_the_conventions(self) -> None:
-        core = {name for name, skill in self.skills.items() if skill["metadata"]["profile"] == "core"}
-        self.assertEqual(CONVENTIONS, core)
-        for name in CONVENTIONS:
-            self.assertEqual("convention", self.skills[name]["kind"])
-
-    def test_every_convention_separates_baseline_from_house(self) -> None:
-        for name in CONVENTIONS:
-            body = self.skills[name]["body"]
-            self.assertIn("## Baseline", body, name)
-            self.assertIn("## House", body, name)
-
-    def test_structure_declares_its_file_structure_section(self) -> None:
-        self.assertIn("## File structure", self.skills["structure"]["body"])
-
-    def test_scaffold_is_its_own_profile(self) -> None:
-        self.assertEqual("scaffold", self.skills["scaffold"]["metadata"]["profile"])
-        self.assertEqual("utility", self.skills["scaffold"]["kind"])
-
-    def test_knowledge_tier_keeps_its_own_profile(self) -> None:
-        for name in ("learning", "knowledge", "direction"):
-            self.assertEqual("knowledge", self.skills[name]["metadata"]["profile"])
-        self.assertEqual("policy", self.skills["learning"]["kind"])
+def test_python_is_the_only_plugin(plugins: dict[str, dict[str, Any]]) -> None:
+    assert {"python"} == set(plugins)
 
 
-if __name__ == "__main__":
-    unittest.main()
+def test_core_is_exactly_the_conventions(plugins: dict[str, dict[str, Any]]) -> None:
+    core = {
+        name
+        for name, skill in plugins["python"].items()
+        if skill["metadata"]["profile"] == "core"
+    }
+    assert core == CONVENTIONS
+    for name in CONVENTIONS:
+        assert plugins["python"][name]["kind"] == "convention"
+
+
+def test_every_convention_separates_baseline_from_house(
+    plugins: dict[str, dict[str, Any]],
+) -> None:
+    for name in CONVENTIONS:
+        body = plugins["python"][name]["body"]
+        assert "## Baseline" in body, name
+        assert "## House" in body, name
+
+
+def test_structure_declares_its_file_structure_section(
+    plugins: dict[str, dict[str, Any]],
+) -> None:
+    assert "## File structure" in plugins["python"]["structure"]["body"]
+
+
+def test_scaffold_is_its_own_profile(plugins: dict[str, dict[str, Any]]) -> None:
+    assert plugins["python"]["scaffold"]["metadata"]["profile"] == "scaffold"
+    assert plugins["python"]["scaffold"]["kind"] == "utility"
+
+
+def test_knowledge_tier_keeps_its_own_profile(
+    plugins: dict[str, dict[str, Any]],
+) -> None:
+    for name in ("learning", "knowledge", "direction"):
+        assert plugins["python"][name]["metadata"]["profile"] == "knowledge"
+    assert plugins["python"]["learning"]["kind"] == "policy"
+
+
+@pytest.fixture
+def plugins() -> dict[str, dict[str, Any]]:
+    generator = SimpleNamespace(
+        **runpy.run_path(str(ROOT / ".agents/sync_generated.py"))
+    )
+    config = generator.load_config(ROOT)
+    payloads = generator.load(ROOT / ".agents/plugins/payloads.json")
+    return cast(
+        dict[str, dict[str, Any]],
+        generator.discover(
+            ROOT, config["namespace"], generator.mapped_resource_directories(payloads)
+        ),
+    )

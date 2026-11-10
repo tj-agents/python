@@ -23,7 +23,8 @@ Each rule names its kind (`python:learning`).
 - Import from the public API the package exposes. Use `import package.module` when callers benefit from
   that module's namespace, or `from package import public_name` for an explicit public export. An alias
   clarifies an actual name collision or follows an established library convention; it does not conceal
-  the dependency's owner. Source: Python tutorial, "Modules"; PEP 8 interfaces. [bootstrap default]
+  the dependency's owner. Enforced by Ruff `PLC2701`, `ICN001`.
+  Source: Python tutorial, "Modules"; PEP 8 interfaces. [bootstrap default]
 - Keep runtime dependencies directed towards lower-level responsibilities. Resolve a cycle by moving
   the shared contract or behaviour to its real owner and updating both callers. Do not move a runtime
   import into a function merely to hide the cycle. An annotation-only dependency may use
@@ -42,6 +43,7 @@ Each rule names its kind (`python:learning`).
   finding a sibling checkout, adding that checkout to `sys.path`/`PYTHONPATH`, or loading its source
   through `spec_from_file_location`. A documented host adapter can establish its shipped bundle's
   package root; that is not permission to discover other repositories on the machine.
+  Enforced by Ruff `TID251`.
   Why: import success must not depend on a developer's folder layout. Tommy, 2026-10-27. [house]
 
 ```python

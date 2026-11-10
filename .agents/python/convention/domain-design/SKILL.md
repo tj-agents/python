@@ -40,6 +40,7 @@ decisions; none is recorded.
 - Use `staticmethod` when an operation belongs to an existing class but needs neither its instance nor the
   class itself; use `classmethod` when it needs the class, such as a named constructor. Add a wrapper or
   subclass only for a concrete modelling or behavioural need, not merely to obtain method-call syntax.
+  Enforced by Ruff `PLR6301`.
   These choices do not require DDD layers or a domain type around every external object. [house]
 - Construction can establish an immutable value's invariants; it cannot guarantee that external state stays
   valid. Recheck changeable filesystem, process or network facts when the operation needs them. [house]

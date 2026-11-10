@@ -17,7 +17,7 @@ Owns test layout, naming, fixtures, isolation and the pytest configuration. Each
 ## Baseline
 
 - pytest runs every test. Tests are plain functions using bare `assert`, never `unittest.TestCase` classes.
-  Source: pytest docs. [ecosystem]
+  Enforced by Ruff `PT009`, `TID251`. Source: pytest docs. [ecosystem]
 - Tests live in the top-level `tests/`, outside the package, with no `__init__.py`, under
   `--import-mode=importlib`. A test module mirrors the module it tests: `src/pkg/parsing.py` is tested by
   `tests/test_parsing.py`. Source: pytest, "Good Integration Practices". [ecosystem]
@@ -27,9 +27,10 @@ Owns test layout, naming, fixtures, isolation and the pytest configuration. Each
   needed. Use the built-in `tmp_path` for files and `monkeypatch` for environment and attributes. Source: pytest
   fixtures docs. [ecosystem]
 - One behaviour over several inputs is one `@pytest.mark.parametrize` test. An expected exception is
-  `pytest.raises(XError, match=...)`. Source: pytest docs. [ecosystem]
+  `pytest.raises(XError, match=...)`. Enforced by Ruff `PT006`, `PT011`. Source: pytest docs. [ecosystem]
 - Tests are deterministic and independent: no network, no reliance on order, and time or randomness passed in
-  rather than read from the system. Source: pytest, "Good Integration Practices". [ecosystem]
+  rather than read from the system. Network isolation enforced by pytest-socket.
+  Source: pytest, "Good Integration Practices". [ecosystem]
 - Prefer real objects and small in-memory fakes. `unittest.mock` patches only an external boundary that cannot
   be passed in. Source: unittest.mock docs, "Where to patch". [bootstrap default]
 - pytest runs strict (`strict = true`: unknown markers, config keys and passing xfails fail) and turns warnings
@@ -41,3 +42,9 @@ Owns test layout, naming, fixtures, isolation and the pytest configuration. Each
 
 - In a script repository (`python:structure`), tests stay in the test directories its layout already uses
   instead of a top-level `tests/`; every other testing rule applies. Tommy, 2026-10-18. [house]
+
+```python
+def test_parse_rejects_empty_input() -> None:
+    with pytest.raises(ParseError, match="empty"):
+        parse("")
+```

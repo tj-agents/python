@@ -40,10 +40,10 @@ verification gate and CI. Each rule names its kind (`python:learning`).
   ```
 
   Source: the uv, ruff, mypy and pytest docs. [bootstrap default]
-- Lint selects ruff `E`, `W`, `F`, `I`, `N`, `UP`, `B`, `A`, `BLE`, `C4`, `SIM`, `PTH`, `PIE`, `RET` and `RUF`.
-  mypy runs `strict` with `warn_unreachable` over `src` and `tests`. pytest uses native `[tool.pytest]` with
-  `strict = true` and warnings as errors. `python:scaffold`'s `pyproject.toml` template is the exact
-  configuration. Source: ruff, mypy and pytest docs. [bootstrap default]
+- `python:scaffold`'s `pyproject.toml` template is the exact Ruff, mypy and pytest configuration.
+  mypy runs strict with `warn_unreachable`, `ignore-without-code` and `exhaustive-match` over source
+  and tests. pytest runs strict with warnings as errors and network access disabled by pytest-socket.
+  Source: ruff, mypy and pytest docs. [bootstrap default]
 - A new project starts from `python:scaffold`. [bootstrap default]
 
 ## House

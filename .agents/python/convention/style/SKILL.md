@@ -21,7 +21,7 @@ Each rule names its kind (`python:learning`).
 - `ruff format` with its defaults (88 columns, double quotes) is the only layout rule; never hand-format.
   Source: ruff formatter docs. [ecosystem]
 - The ruff rule set `python:build` configures is the lint policy. A suppression names its rule
-  (`# noqa: B008`), never a bare `# noqa`. Source: ruff docs. [bootstrap default]
+  (`# noqa: B008`), never a bare `# noqa`. Enforced by Ruff `PGH004`. Source: ruff docs. [bootstrap default]
 
 ### Naming
 
@@ -40,16 +40,17 @@ Each rule names its kind (`python:learning`).
 - Parameters take the most abstract type the function uses (`Iterable`, `Sequence`, `Mapping`); returns are
   concrete. Source: typing.python.org best practices. [ecosystem]
 - `Any`, `cast` and `# type: ignore[code]` appear only at an untyped boundary, and an ignore always names its
-  error code. Source: mypy docs. [bootstrap default]
+  error code. Enforced by Ruff `ANN401` and mypy `ignore-without-code`. Source: mypy docs. [bootstrap default]
 
 ### Idioms
 
 - f-strings for formatting text; `logging` calls pass arguments (`log.info("loaded %s", path)`) so formatting is
-  lazy. Source: PEP 498; logging HOWTO. [ecosystem]
+  lazy. Enforced by Ruff `G004`. Source: PEP 498; logging HOWTO. [ecosystem]
 - Paths are `pathlib.Path`, never `os.path` string handling. Enforced by ruff `PTH`. Source: pathlib docs.
   [ecosystem]
 - Files, locks, connections and anything with a `close` live in a `with` block. Text I/O passes
-  `encoding="utf-8"`, since the default depends on the platform. Source: PEP 343, PEP 597. [ecosystem]
+  `encoding="utf-8"`, since the default depends on the platform. Enforced by Ruff `PLW1514`.
+  Source: PEP 343, PEP 597. [ecosystem]
 - Compare with `None` by `is` / `is not`. Test a container by truthiness only when `None` and empty mean the same;
   otherwise compare explicitly. Source: PEP 8. [ecosystem]
 - No mutable default arguments: default to `None` and build inside, or `field(default_factory=...)` on a
@@ -62,8 +63,8 @@ Each rule names its kind (`python:learning`).
 - `match` is for destructuring structured data or dispatching on a closed set; an `if` chain stays an `if` chain.
   Source: PEP 636. [bootstrap default]
 - Output for the user is `print` (or the CLI library's equivalent); diagnostics are `logging` through
-  `logging.getLogger(__name__)`. Only an entry point configures handlers. Source: logging HOWTO, "Configuring
-  Logging for a Library". [ecosystem]
+  `logging.getLogger(__name__)`. Only an entry point configures handlers. Enforced by Ruff `LOG002`, `LOG015`.
+  Source: logging HOWTO, "Configuring Logging for a Library". [ecosystem]
 - A docstring documents public API whose name and signature do not already say it; no docstring restates a name.
   Source: PEP 257. [bootstrap default]
 
