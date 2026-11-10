@@ -154,7 +154,11 @@ def commands(root: Path, paths: Sequence[Path] | None) -> list[tuple[str, ...]]:
 
 def verify(root: Path, paths: Sequence[Path] | None) -> list[Result]:
     if paths is not None:
-        if any(path.name == "pyproject.toml" for path in paths):
+        if any(
+            path.name == "pyproject.toml"
+            or (path.suffix in {".py", ".pyi"} and not path.is_file())
+            for path in paths
+        ):
             paths = None
         elif not any(
             path.suffix in {".py", ".pyi"} and path.is_file() for path in paths
