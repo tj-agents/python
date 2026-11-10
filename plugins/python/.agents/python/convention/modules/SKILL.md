@@ -23,17 +23,17 @@ Each rule names its kind (`python:learning`).
 - Name a module for its responsibility; never use `utils`, `helpers`, `common` or `misc` as a bucket.
   Group related modules into a capability subpackage when that subject needs several modules or its own
   public API. Keep cohesive code together instead of creating one file per function or class.
-  Source: *Effective Python*; Python tutorial, "Packages". [bootstrap default]
+  Enforced by `PY007`. Source: *Effective Python*; Python tutorial, "Packages". [bootstrap default]
 - Regular packages contain `__init__.py`. Keep it empty or explicitly re-export the package's public
   names and list those in `__all__`; it does not run setup or collect every descendant's symbols.
-  Source: Python tutorial, "Packages"; PEP 8. [bootstrap default]
+  Enforced by `PY008`. Source: Python tutorial, "Packages"; PEP 8. [bootstrap default]
 - Public names are the supported consumer API. Internal names and modules take a leading underscore;
   this signals intent rather than preventing access. Source: PEP 8, "Public and Internal Interfaces".
   [ecosystem]
 - Importing our modules defines functions, types and constants without I/O, network access, environment
   reads into globals or logging configuration. Entry points obtain process state and pass values into
   the implementation. Why: the same module must be reusable by another process and by isolated tests.
-  Source: Python docs, `__main__`. [bootstrap default]
+  Enforced for identifiable I/O by `PY009`. Source: Python docs, `__main__`. [bootstrap default]
 - Use native namespace packages only when independently installed distributions deliberately contribute
   different portions of one import namespace. Every contributor omits `__init__.py` at the shared
   namespace level; owned regular subpackages retain theirs. Nested folders alone do not require a
