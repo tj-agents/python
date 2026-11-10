@@ -754,9 +754,65 @@ def _process_state(
             names: dict[str, str] = imports,
         ) -> None:
             if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
-                in_entry = scope_depth == 0 and node.name in allowed_entries
-                scope_depth += 1
-            elif isinstance(node, ast.ClassDef):
+                for decorator in node.decorator_list:
+                    visit(
+                        decorator,
+                        in_entry,
+                        scope_depth,
+                        current_path,
+                        allowed_entries,
+                        names,
+                    )
+                for default in [*node.args.defaults, *node.args.kw_defaults]:
+                    if default:
+                        visit(
+                            default,
+                            in_entry,
+                            scope_depth,
+                            current_path,
+                            allowed_entries,
+                            names,
+                        )
+                arguments = [
+                    *node.args.posonlyargs,
+                    *node.args.args,
+                    *node.args.kwonlyargs,
+                ]
+                if node.args.vararg:
+                    arguments.append(node.args.vararg)
+                if node.args.kwarg:
+                    arguments.append(node.args.kwarg)
+                for argument in arguments:
+                    if argument.annotation:
+                        visit(
+                            argument.annotation,
+                            in_entry,
+                            scope_depth,
+                            current_path,
+                            allowed_entries,
+                            names,
+                        )
+                if node.returns:
+                    visit(
+                        node.returns,
+                        in_entry,
+                        scope_depth,
+                        current_path,
+                        allowed_entries,
+                        names,
+                    )
+                entry_body = scope_depth == 0 and node.name in allowed_entries
+                for statement in node.body:
+                    visit(
+                        statement,
+                        entry_body,
+                        scope_depth + 1,
+                        current_path,
+                        allowed_entries,
+                        names,
+                    )
+                return
+            if isinstance(node, ast.ClassDef):
                 scope_depth += 1
             name = (
                 _dotted(node, names)

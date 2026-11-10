@@ -13,6 +13,7 @@ SCRIPT = ROOT / ".agents/python/utility/check/scripts/check_python.py"
 
 
 class Result(Protocol):
+    line: int
     path: Path
     rule: str
 
@@ -468,3 +469,27 @@ def test_configured_entry_callable_is_allowed_but_class_main_is_not(
         if item.path == Path("src/demo_tool/entry.py") and item.rule == "PY016"
     ]
     assert len(state) == 1
+
+
+def test_entry_decorators_and_defaults_do_not_read_process_state(
+    tmp_path: Path, checker: Checker
+) -> None:
+    root = project(
+        tmp_path,
+        {
+            "pyproject.toml": "[tool.uv]\npackage = false\n",
+            "entry.py": (
+                "import os\ndef decorate(value):\n    return value\n"
+                "@decorate(os.getenv('DECORATOR'))\n"
+                "def main(value=os.getenv('DEFAULT')):\n    return os.getenv('BODY')\n"
+                "if __name__ == '__main__':\n    main()\n"
+            ),
+        },
+    )
+    diagnostics = checker.check(root)
+    state = [
+        item
+        for item in diagnostics
+        if item.path == Path("entry.py") and item.rule == "PY016"
+    ]
+    assert {item.line for item in state} == {4, 5}
