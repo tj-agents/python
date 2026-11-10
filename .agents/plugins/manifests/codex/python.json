@@ -6,6 +6,7 @@
   },
   "repository": "https://github.com/tj-agents/python",
   "skills": "./skills/",
+  "hooks": "./hooks/codex.json",
   "keywords": ["python", "uv", "ruff", "mypy", "pytest"],
   "interface": {
     "displayName": "Python",

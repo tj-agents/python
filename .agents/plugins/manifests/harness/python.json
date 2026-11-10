@@ -14,7 +14,15 @@
     "plugins": [
       "tj-agents/python"
     ],
-    "hooks": [],
+    "hooks": [
+      {
+        "path": ".agents/python/utility/check/scripts/run_checks.py",
+        "hosts": [
+          "claude",
+          "codex"
+        ]
+      }
+    ],
     "permissions": {
       "claude_allow": [],
       "codex_prefix_rules": []
