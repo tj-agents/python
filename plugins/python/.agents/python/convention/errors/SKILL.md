@@ -21,7 +21,7 @@ Owns exception types, raising, catching, propagation and cleanup. Each rule name
 - Never swallow an exception silently. Translate it with `raise NewError(...) from error`, or rethrow with a bare
   `raise`. Enforced by ruff `B904`. Source: PEP 3134. [ecosystem]
 - A `try` body holds only the statement that can raise; the success path goes in `else`. Source: PEP 8; Python tutorial,
-  "Handling Exceptions". [ecosystem]
+  "Handling Exceptions". Enforced by Ruff `TRY300`. [ecosystem]
 - A package's own failures are exceptions named `...Error`, defined in the module that raises them and rooted at
   one `<Package>Error(Exception)` base, so callers can catch the package as a whole or one failure. Source:
   PEP 8, "Exception Names". [bootstrap default]
@@ -39,3 +39,10 @@ Owns exception types, raising, catching, propagation and cleanup. Each rule name
 ## House
 
 _Nothing yet._ Propose a rule through `python:learning`'s convention procedure.
+
+```python
+try:
+    parse(value)
+except ValueError as error:
+    raise InputError("invalid input") from error
+```

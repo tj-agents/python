@@ -17,7 +17,8 @@ behaviour per member belongs to `python:dispatch`.
 ## Baseline
 
 - A closed set of choices is an `enum.Enum` (`StrEnum` when the value must be a string), never loose string
-  constants. Code that handles every member ends in `assert_never`, so mypy flags a missing case. Source: enum
+  constants. Code that handles every member ends in `assert_never`. Enforced by mypy `exhaustive-match`.
+  Source: enum
   docs; typing docs, `assert_never`. [ecosystem]
 
 ## House
