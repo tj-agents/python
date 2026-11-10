@@ -55,7 +55,8 @@
         "Python projects"
       ],
       "requires": [
-        "Python 3.12+"
+        "Python 3.12+",
+        "uv and the project's dev dependencies"
       ],
       "provenance": [
         "house"

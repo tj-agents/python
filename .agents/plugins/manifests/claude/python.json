@@ -7,5 +7,6 @@
   },
   "repository": "https://github.com/tj-agents/python",
   "skills": "./skills/",
+  "hooks": "./hooks/claude.json",
   "keywords": ["python", "uv", "ruff", "mypy", "pytest"]
 }

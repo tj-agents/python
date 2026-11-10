@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|Bash|apply_patch|exec_command",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python",
+            "args": ["-B", "${CLAUDE_PLUGIN_ROOT}/.agents/python/utility/check/scripts/run_checks.py", "--hook"],
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  }
+}
