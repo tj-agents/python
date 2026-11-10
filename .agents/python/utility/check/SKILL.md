@@ -23,6 +23,15 @@ Explicit paths restrict diagnostics to changed files; source checks still read t
 With no paths, check all authored files. The checker excludes generated copies, vendored generator
 files, environments and nested Git repositories. Import-linter runs when the project declares contracts.
 
+Independently shipped packages with the same import name require separate mypy runs. Declare their
+source roots in `tool.python-standards.mypy-groups`; `--mypy-only` runs those groups for CI. Edited files
+select only their matching groups.
+
+```toml
+[tool.python-standards]
+mypy-groups = [["src", "tests"], [".claude/runtime"], [".codex/runtime"]]
+```
+
 Claude and Codex PostToolUse hooks invoke the same runner with the edited paths. Shell edits use the
 current Git diff and untracked files. A changed `pyproject.toml` requires the complete configuration check.
 Codex must trust the installed hooks through its native hook approval; source generation does not grant trust.

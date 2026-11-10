@@ -130,6 +130,37 @@ def commands(root: Path, paths: Sequence[Path] | None) -> list[tuple[str, ...]]:
         ]
     )
     checker = Path(__file__).with_name("check_python.py")
+    tool = config.get("tool", {})
+    standards = tool.get("python-standards", {})
+    groups = standards.get("mypy-groups")
+    type_targets = [selected]
+    if groups is not None:
+        if not isinstance(groups, list) or not groups:
+            raise ValueError(
+                "python-standards.mypy-groups must be nonempty lists of paths."
+            )
+        type_targets = []
+        matched: set[str] = set()
+        for group in groups:
+            if (
+                not isinstance(group, list)
+                or not group
+                or any(not isinstance(path, str) or not path for path in group)
+            ):
+                raise ValueError(
+                    "python-standards.mypy-groups must be nonempty lists of paths."
+                )
+            targets = list(group) if paths is None else []
+            if paths is not None:
+                bases = [(root / base).resolve() for base in group]
+                for path in selected:
+                    if any(Path(path).is_relative_to(base) for base in bases):
+                        targets.append(path)
+            if targets:
+                type_targets.append(targets)
+                matched.update(targets)
+        if paths is not None and (remaining := sorted(set(selected) - matched)):
+            type_targets.append(remaining)
     output = [
         ("uv", "run", "--offline", "--no-sync", "ruff", "format", "--check", *selected),
         (
@@ -142,10 +173,12 @@ def commands(root: Path, paths: Sequence[Path] | None) -> list[tuple[str, ...]]:
             "--force-exclude",
             *selected,
         ),
-        ("uv", "run", "--offline", "--no-sync", "mypy", *selected),
+        *[
+            ("uv", "run", "--offline", "--no-sync", "mypy", *targets)
+            for targets in type_targets
+        ],
         (sys.executable, "-B", str(checker), "--root", str(root), *selected),
     ]
-    tool = config.get("tool", {})
     imports = tool.get("importlinter", {}) if isinstance(tool, dict) else {}
     if isinstance(imports, dict) and imports.get("contracts"):
         output.append(("uv", "run", "--offline", "--no-sync", "lint-imports"))
@@ -210,6 +243,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     parser.add_argument("--root", type=Path)
     parser.add_argument("--hook", action="store_true")
+    parser.add_argument("--mypy-only", action="store_true")
     parser.add_argument("paths", type=Path, nargs="*")
     arguments = parser.parse_args(argv)
     try:
@@ -228,6 +262,13 @@ def main(argv: Sequence[str] | None = None) -> int:
             if arguments.hook
             else [(root / path).resolve() for path in arguments.paths] or None
         )
+        if arguments.mypy_only:
+            results = [
+                execute(command, root)
+                for command in commands(root, paths)
+                if len(command) > 4 and command[4] == "mypy"
+            ]
+            return feedback(results, False)
         return feedback(verify(root, paths), arguments.hook)
     except (OSError, ValueError) as error:
         result = Result(("python-standards",), 2, str(error))
