@@ -165,3 +165,42 @@ def test_canonical_plugin_sources_are_checked_and_generated_plugins_are_skipped(
     mapping.parent.mkdir(parents=True)
     mapping.write_text("{}", encoding="utf-8")
     assert not runner.authored(source, tmp_path)
+
+
+def test_independent_mypy_groups_keep_same_named_host_packages_separate(
+    runner: SimpleNamespace,
+    tmp_path: Path,
+) -> None:
+    (tmp_path / "pyproject.toml").write_text(
+        "[tool.python-standards]\n"
+        'mypy-groups = [[".agents", "tests"], '
+        '[".claude/runtime"], [".codex/runtime"]]\n',
+        encoding="utf-8",
+    )
+    for directory in (".claude", ".codex"):
+        package = tmp_path / directory / "runtime"
+        package.mkdir(parents=True)
+        (package / "__init__.py").touch()
+    commands = runner.commands(tmp_path, None)
+    types = [command for command in commands if command[4:5] == ("mypy",)]
+    assert [command[5:] for command in types] == [
+        (".agents", "tests"),
+        (".claude/runtime",),
+        (".codex/runtime",),
+    ]
+    changed = tmp_path / ".codex/runtime/__init__.py"
+    commands = runner.commands(tmp_path, [changed])
+    types = [command for command in commands if command[4:5] == ("mypy",)]
+    assert len(types) == 1
+    assert types[0][5:] == (str(changed),)
+
+
+def test_invalid_mypy_groups_fail_before_running_tools(
+    runner: SimpleNamespace,
+    tmp_path: Path,
+) -> None:
+    (tmp_path / "pyproject.toml").write_text(
+        '[tool.python-standards]\nmypy-groups = ["src"]\n', encoding="utf-8"
+    )
+    with pytest.raises(ValueError, match="nonempty lists of paths"):
+        runner.commands(tmp_path, None)
