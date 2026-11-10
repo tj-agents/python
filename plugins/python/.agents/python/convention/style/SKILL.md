@@ -58,7 +58,7 @@ Each rule names its kind (`python:learning`).
 - Loop over items, not indices: `enumerate`, `zip(..., strict=True)`, unpacking and `dict.items()`. Source:
   ruff `B905`, `SIM`; *Effective Python*. [ecosystem]
 - A comprehension builds a collection from one loop with an optional filter; once it nests twice or has side
-  effects it becomes a loop. A single-pass pipeline is a generator. Source: *Effective Python*.
+  effects it becomes a loop. A single-pass pipeline is a generator. Enforced for depth by `PY001`. Source: *Effective Python*.
   [bootstrap default]
 - `match` is for destructuring structured data or dispatching on a closed set; an `if` chain stays an `if` chain.
   Source: PEP 636. [bootstrap default]
