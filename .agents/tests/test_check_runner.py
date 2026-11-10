@@ -81,11 +81,21 @@ def test_commands_limit_file_checks_and_keep_architecture_contracts(
     assert all("--no-sync" in command for command in commands[:3])
 
 
-def test_deleted_and_non_python_edits_do_not_run_full_checks(
+def test_deleted_python_checks_surviving_sources_and_skips_unrelated_edits(
     runner: SimpleNamespace,
     tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    assert runner.verify(tmp_path, [tmp_path / "deleted.py"]) == []
+    calls: list[tuple[str, ...]] = []
+
+    def record(command: tuple[str, ...], root: Path) -> object:
+        calls.append(command)
+        return runner.Result(command, 0, "")
+
+    (tmp_path / "pyproject.toml").write_text("", encoding="utf-8")
+    monkeypatch.setitem(runner.verify.__globals__, "execute", record)
+    assert len(runner.verify(tmp_path, [tmp_path / "deleted.py"])) == 4
+    assert calls == runner.commands(tmp_path, None)
     assert runner.verify(tmp_path, [tmp_path / "README.md"]) == []
 
 
