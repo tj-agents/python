@@ -6,6 +6,7 @@
   },
   "repository": "https://github.com/tj-agents/python",
   "skills": "./skills/",
+  "hooks": "./hooks/codex.json",
   "keywords": [
     "python",
     "uv",
@@ -22,5 +23,5 @@
     "capabilities": [],
     "defaultPrompt": "Teach me the next Python concept my current task needs."
   },
-  "version": "4b816cc10983"
+  "version": "42b940b4b922"
 }

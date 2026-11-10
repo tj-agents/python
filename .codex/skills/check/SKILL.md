@@ -1,11 +1,11 @@
 ---
 name: check
-description: Check a Python repository against its mechanical source and layout standards. Use when validating Python changes or diagnosing a Python standards failure; architectural judgement stays with the owning convention.
+description: Check a Python repository against its mechanical source, layout, Ruff and mypy standards. Use when validating Python changes or diagnosing a Python standards failure; architectural judgement stays with the owning convention.
 kind: utility
 domain: python
 profile: verification
 applicability: Python projects
-requires: Python 3.12+
+requires: Python 3.12+, uv and the project's dev dependencies
 provenance: house
 ---
 
