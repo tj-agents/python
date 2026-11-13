@@ -167,7 +167,7 @@ def test_checks_canonical_plugins_without_generated_payloads(
         tmp_path,
         {
             "pyproject.toml": "[tool.uv]\npackage = false\n",
-            "plugins/infonetica/check.py": "x = [a for b in [] for a in b]\n",
+            "plugins/example-employer/check.py": "x = [a for b in [] for a in b]\n",
         },
     )
     assert "PY001" in rules(checker, root)
