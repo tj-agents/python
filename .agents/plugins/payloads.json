@@ -3,5 +3,17 @@
     "python": [
       "python"
     ]
-  }
+  },
+  "resources": [
+    {
+      "plugin": "python",
+      "source": ".agents/hooks/python/claude.json",
+      "destination": "hooks/claude.json"
+    },
+    {
+      "plugin": "python",
+      "source": ".agents/hooks/python/codex.json",
+      "destination": "hooks/codex.json"
+    }
+  ]
 }
